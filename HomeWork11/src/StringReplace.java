@@ -35,10 +35,8 @@ public class StringReplace {
         File inputFile = new File(fileName);
         try {
             replaceString(inputFile, string, replacingString);
-
         } catch (IOException e) {
             System.out.println("ERROR: " + e.getMessage());
-            System.exit(1);
         }
     }
 
