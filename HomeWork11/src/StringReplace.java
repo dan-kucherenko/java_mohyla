@@ -23,20 +23,22 @@ public class StringReplace {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         System.out.print("Введіть файл для запису: ");
         String fileName = sc.nextLine();
+        File inputFile = new File(fileName);
 
         System.out.print("Введіть строку для заміни: ");
         String string = sc.nextLine();
 
-        System.out.print("Введіть строку для заміни обраної строки: ");
+        System.out.print("Введіть строку на яку замінюємо обрану: ");
         String replacingString = sc.nextLine();
 
-        File inputFile = new File(fileName);
+
         try {
             replaceString(inputFile, string, replacingString);
         } catch (IOException e) {
-            System.out.println("ERROR: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
