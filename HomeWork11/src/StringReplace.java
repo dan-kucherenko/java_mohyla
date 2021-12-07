@@ -2,22 +2,22 @@ import java.io.*;
 import java.util.Scanner;
 
 public class StringReplace {
-    private static void replaceString(File file, String string, String replacingString) throws IOException {
+    private static void replaceString(File file, String stringToBeReplaced, String stringToReplaceWith) throws IOException {
         Scanner sc = new Scanner(file);
         StringBuilder outputStringBuilder = new StringBuilder();
         String formattedLine = null;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            formattedLine = line.replaceAll(string, replacingString);
-            outputStringBuilder.append(formattedLine).append('\n');
+            formattedLine = line.replace(stringToBeReplaced, stringToReplaceWith);
+            outputStringBuilder.append(formattedLine + "\n");
         }
-        String outputString = outputStringBuilder.toString();
-        fileWriting(file, outputString);
+        String output = outputStringBuilder.toString();
+        fileWriting(file, output);
     }
 
-    private static void fileWriting(File file, String data) throws IOException {
+    private static void fileWriting(File file, String dataToWriteInFile) throws IOException {
         PrintWriter pw = new PrintWriter(new FileWriter(file));
-        pw.write(data);
+        pw.write(dataToWriteInFile);
         pw.close();
     }
 
@@ -29,14 +29,14 @@ public class StringReplace {
         File inputFile = new File(fileName);
 
         System.out.print("Введіть строку для заміни: ");
-        String string = sc.nextLine();
+        String stringToBeReplaced = sc.nextLine();
 
         System.out.print("Введіть строку на яку замінюємо обрану: ");
-        String replacingString = sc.nextLine();
+        String stringToReplaceWith = sc.nextLine();
 
 
         try {
-            replaceString(inputFile, string, replacingString);
+            replaceString(inputFile, stringToBeReplaced, stringToReplaceWith);
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
