@@ -34,19 +34,12 @@ public class Decoding {
         }
     }
 
-    private static void fileDecoding() {
-        try {
-            Scanner sc = new Scanner(System.in);
+    public static void main (String[]args) throws IOException {
+        Scanner sc = new Scanner(System.in);
 
-            System.out.print("Введіть назву файла для декодування: ");
-            String fileToDecode = "src/Task5/" + sc.nextLine();
+        System.out.print("Введіть назву файла для декодування: ");
+        String fileToDecode = "src/Task5/" + sc.nextLine();
 
-            writeDecodedFile(decode(readFile(fileToDecode)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void main (String[]args){
-        fileDecoding();
+        writeDecodedFile(decode(readFile(fileToDecode)));
     }
 }
