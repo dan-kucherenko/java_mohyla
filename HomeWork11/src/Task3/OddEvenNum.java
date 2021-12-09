@@ -7,13 +7,8 @@ public class OddEvenNum {
     private static final String oddFileName = "src/Task3/oddNums.txt";
     private static final String evenFileName = "src/Task3/evenNums.txt";
 
-    private static void oddEven() {
+    private static void oddEven(String readerFileName) {
         try {
-            Scanner sc = new Scanner(System.in);
-
-            System.out.print("Введіть назву файлу з якого читаємо: ");
-            String readerFileName = "src/Task3/" + sc.nextLine();
-
             BufferedReader reader = new BufferedReader(new FileReader(readerFileName));
             PrintWriter oddFIleWriter = new PrintWriter(new FileWriter(oddFileName));
             PrintWriter evenFileWriter = new PrintWriter(new FileWriter(evenFileName));
@@ -38,6 +33,11 @@ public class OddEvenNum {
     }
 
     public static void main(String[] args) {
-        oddEven();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Введіть назву файлу з якого читаємо: ");
+        String readerFileName = "src/Task3/" + sc.nextLine();
+
+        oddEven(readerFileName);
     }
 }
