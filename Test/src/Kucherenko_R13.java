@@ -12,7 +12,7 @@ public class Kucherenko_R13 {
         int xn;
         if (k == 0) System.out.println("Добуток К-елементів = 0");
         else {
-            for (int i = 0; i < k-1; i++) {
+            for (int i = 0; i < k - 1; i++) {
                 xn = x1 * (1 + x0);
                 x0 = x1;
                 x1 = xn;

@@ -18,10 +18,10 @@ public class Kucherenko_G23 extends GraphicsProgram {
         middlePointHeight = this.getHeight() / 2;
         GRect rect = new GRect(middlePointWidth - side / 2, middlePointHeight - side / 2, side, side);
         rect.setFilled(false);
-        GLine line_horizontal = new GLine(middlePointWidth-side, middlePointHeight, middlePointWidth+side, middlePointHeight);
-        GLine line_vertical = new GLine(middlePointWidth,middlePointHeight-side,middlePointWidth,middlePointHeight+side);
-        GLabel x = new GLabel("X",middlePointWidth+side/8,middlePointHeight-side);
-        GLabel y = new GLabel("Y", middlePointWidth+side, middlePointHeight-side/8);
+        GLine line_horizontal = new GLine(middlePointWidth - side, middlePointHeight, middlePointWidth + side, middlePointHeight);
+        GLine line_vertical = new GLine(middlePointWidth, middlePointHeight - side, middlePointWidth, middlePointHeight + side);
+        GLabel x = new GLabel("X", middlePointWidth + side / 8, middlePointHeight - side);
+        GLabel y = new GLabel("Y", middlePointWidth + side, middlePointHeight - side / 8);
         add(rect);
         add(line_horizontal);
         add(line_vertical);
