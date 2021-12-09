@@ -33,20 +33,12 @@ public class Coding {
             e.printStackTrace();
         }
     }
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
 
-    private static void fileEncoding() {
-        try {
-            Scanner sc = new Scanner(System.in);
+        System.out.print("Введіть назву файла для кодування: ");
+        String fileToEncrypt = "src/Task4/" + sc.nextLine();
 
-            System.out.print("Введіть назву файла для кодування: ");
-            String fileToEncrypt = "src/Task4/" + sc.nextLine();
-
-            writeEncodedFile(encode(readFile(fileToEncrypt)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writeEncodedFile(encode(readFile(fileToEncrypt)));
     }
-        public static void main (String[]args){
-            fileEncoding();
-        }
-    }
+}

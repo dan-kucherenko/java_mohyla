@@ -4,20 +4,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class StringReplace {
-    private static void inputingAndReplacingData() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Введіть назву файлу з якого читаємо: ");
-        String fileToReadName = "src/Task1/" + sc.nextLine();
-
-        System.out.print("Введіть строку для заміни: ");
-        String stringToReplace = sc.nextLine();
-
-        System.out.print("Введіть строку на яку замінюємо обрану: ");
-        String stringToReplaceWith = sc.nextLine();
-        replaceString(fileToReadName, stringToReplace, stringToReplaceWith);
-    }
-
     private static void replaceString(String fileToReadName, String stringToReplace, String stringToReplaceWith) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileToReadName));
@@ -39,6 +25,17 @@ public class StringReplace {
     }
 
     public static void main(String[] args) {
-        inputingAndReplacingData();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Введіть назву файлу з якого читаємо: ");
+        String fileToReadName = "src/Task1/" + sc.nextLine();
+
+        System.out.print("Введіть строку для заміни: ");
+        String stringToReplace = sc.nextLine();
+
+        System.out.print("Введіть строку на яку замінюємо обрану: ");
+        String stringToReplaceWith = sc.nextLine();
+
+        replaceString(fileToReadName, stringToReplace, stringToReplaceWith);
     }
 }
