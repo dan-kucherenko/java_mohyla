@@ -12,7 +12,7 @@ public class ClassLibrary {
 
     public void sq() {
         System.out.println("Метод №2");
-        for (int i = 1; i < 10d; i += 2) {
+        for (int i = 1; i < 10; i += 2) {
             System.out.println(i + " - " + Math.pow(i, 2));
         }
         System.out.println("\n");
@@ -25,7 +25,7 @@ public class ClassLibrary {
         System.out.print("Введіть к-сть n цілих додатніх чисел: ");
         int n = sc.nextInt();
         int sum = 0;
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             sum += i;
         }
         System.out.println(sum + "\n");
@@ -37,7 +37,7 @@ public class ClassLibrary {
         System.out.print("Введіть к-сть n непарних чисел: ");
         int n = sc.nextInt();
         int sum = 0;
-        for (int i = 1; i < n; i += 2) {
+        for (int i = 1; i < n; i ++) {
             sum += i + 1;
         }
         System.out.println(sum + "\n");
@@ -57,7 +57,7 @@ public class ClassLibrary {
 
     public void pow() {
         System.out.println("Метод №6");
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i <= 10; i++) {
             System.out.println(2 + " - " + Math.pow(2, i));
         }
     }
@@ -68,7 +68,7 @@ public class ClassLibrary {
         System.out.println("Введіть число n для обчислення його факторіалу: ");
         int n = sc.nextInt();
         int fact = 1;
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i < n; i++) {
             fact *= i;
         }
         System.out.println("Факторіал числа " + n + " дорівнює " + fact);
@@ -76,7 +76,7 @@ public class ClassLibrary {
 
     public void function() {
         System.out.println("Метод №8");
-        for (double x = 2; x <= 2; x += 0.25) {
+        for (double x = -2; x <= 2; x += 0.25) {
             double y = -2.4 * x * x + 5 * x - 3;
             System.out.println("Функція при аргументі " + x + " дорівнює " + y);
         }
