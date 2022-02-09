@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class StudentsGrades {
     private int[] grades;
 
-    public StudentsGrades(int[] grades) {
+    StudentsGrades(int[] grades) {
         int[] var2 = grades;
         int var3 = grades.length;
 
@@ -12,7 +12,6 @@ public class StudentsGrades {
             if (i >= 0 && i <= 100) {
                 this.grades = grades;
             } else {
-                System.out.println("Помилка у введених даних");
                 System.exit(1);
             }
         }
