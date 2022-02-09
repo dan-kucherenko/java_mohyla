@@ -1,6 +1,6 @@
 public class TestStudentGrades {
     public static void main(String[] args) {
-        int[] grades = {44, 99, 25, 17, 29};
+        int[] grades = {44, 99, 25, 17, 75, 64};
         int[] newGrades = {23, 86, 52, 13};
         StudentsGrades sg = new StudentsGrades(grades);
         sg.getGrades(3);
