@@ -21,7 +21,7 @@ public class StudentsGrades {
         if (grades.length != newGrades.length)
             return null;
         else {
-            for (int i : grades)
+            for (int i = 0; i < grades.length; i++)
                 grades[i] = newGrades[i];
             return grades;
         }

@@ -1,9 +1,9 @@
 public class TestStudentGrades {
     public static void main(String[] args) {
         int[] grades = {44, 99, 25, 17, 75, 64};
-        int[] newGrades = {23, 86, 52, 13};
+        int[] newGrades = {23, 86, 52, 13, 58, 9};
         StudentsGrades sg = new StudentsGrades(grades);
-        sg.getGrades(3);
+        System.out.println(sg.getGrades(3));
         sg.setGrades(newGrades);
         sg.addGrades(4);
         System.out.println("Найбільша оцінка: " + sg.maxGrade());
