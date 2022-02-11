@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class StudentsGrades {
     private int[] grades;
-    private int maxGrade;
+    private int maxGrade = -1;
     private int minGrade;
     private float averageGrade;
     private int studentsWithGradeAvPlus;
