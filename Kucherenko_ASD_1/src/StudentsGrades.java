@@ -2,14 +2,25 @@ import java.util.Arrays;
 
 public class StudentsGrades {
     private int[] grades;
+    private int maxGrade;
+    private int minGrade;
+    private float averageGrade;
+    private int studentsWithGradeAvPlus;
+    private int studentsWithGradeAvLess;
+    private int studentsWithExcellentGrade;
+    private int studentsWithGoodGrade;
+    private int studentsWithSatisfactoryGrade;
+    private String allGrades;
 
     StudentsGrades(int[] grades) {
         for (int i : grades) {
             if (i >= 0 && i <= 100)
                 this.grades = grades;
+
             else
                 System.exit(1);
         }
+        calculateData();
     }
 
     public int getGrades(int indexOfNum) {
@@ -23,6 +34,7 @@ public class StudentsGrades {
         else {
             for (int i = 0; i < grades.length; i++)
                 grades[i] = newGrades[i];
+            calculateData();
             return grades;
         }
     }
@@ -31,13 +43,14 @@ public class StudentsGrades {
         if (newGrade >= 0 && newGrade <= 100) {
             grades = Arrays.copyOf(grades, grades.length + 1);
             grades[grades.length - 1] = newGrade;
+            calculateData();
             return grades;
         } else
             return null;
     }
 
     public int maxGrade() {
-        int maxGrade = grades[0];
+        maxGrade = grades[0];
         for (int i : grades) {
             if (i > maxGrade)
                 maxGrade = i;
@@ -46,7 +59,7 @@ public class StudentsGrades {
     }
 
     public int minGrade() {
-        int minGrade = grades[0];
+        minGrade = grades[0];
         for (int i : grades) {
             if (i < minGrade)
                 minGrade = i;
@@ -61,12 +74,12 @@ public class StudentsGrades {
             sumOfAllGrades += i;
             counter++;
         }
-        float averageGrade = (float) sumOfAllGrades / counter;
+        averageGrade = (float) sumOfAllGrades / counter;
         return averageGrade;
     }
 
     public int studentsWithGradeAvMore(double averageGrade) {
-        int studentsWithGradeAvPlus = 0;
+        studentsWithGradeAvPlus = 0;
         for (int i : grades) {
             if ((double) i > averageGrade)
                 studentsWithGradeAvPlus++;
@@ -75,16 +88,16 @@ public class StudentsGrades {
     }
 
     public int studentsWithGradeAvLess(double averageGrade) {
-        int studentWithGradeAvLess = 0;
+        studentsWithGradeAvLess = 0;
         for (int i : grades) {
             if (i < averageGrade)
-                studentWithGradeAvLess++;
+                studentsWithGradeAvLess++;
         }
-        return studentWithGradeAvLess;
+        return studentsWithGradeAvLess;
     }
 
     public int studentsWithExcellentGrade() {
-        int studentsWithExcellentGrade = 0;
+        studentsWithExcellentGrade = 0;
         for (int i : grades) {
             if (i >= 91 && i <= 100)
                 studentsWithExcellentGrade++;
@@ -93,8 +106,7 @@ public class StudentsGrades {
     }
 
     public int studentsWithGoodGrade() {
-        int studentsWithGoodGrade = 0;
-
+        studentsWithGoodGrade = 0;
         for (int i : grades) {
             if (i >= 71 && i <= 90)
                 studentsWithGoodGrade++;
@@ -103,7 +115,7 @@ public class StudentsGrades {
     }
 
     public int studentsWithSatisfactoryGrade() {
-        int studentsWithSatisfactoryGrade = 0;
+        studentsWithSatisfactoryGrade = 0;
         for (int i : grades) {
             if (i >= 60 && i <= 70)
                 studentsWithSatisfactoryGrade++;
@@ -112,9 +124,33 @@ public class StudentsGrades {
     }
 
     public String allGrades() {
-        String allGrades = "";
+        allGrades = "";
         for (int i : grades)
             allGrades += i + " ";
         return allGrades;
     }
+
+    private void calculateData() {
+        maxGrade();
+        minGrade();
+        averageGrade();
+        studentsWithGradeAvMore(averageGrade);
+        studentsWithGradeAvLess(averageGrade);
+        studentsWithExcellentGrade();
+        studentsWithGoodGrade();
+        studentsWithSatisfactoryGrade();
+        allGrades();
+    }
+
+    public int getMaxGrade() {return maxGrade;}
+    public int getMinGrade(){return minGrade;}
+    public float getAverageGrade(){return averageGrade;}
+    public int getStudentsWithGradeAvPlus(){return studentsWithGradeAvPlus;}
+    public int getStudentsWithGradeAvLess(){return studentsWithGradeAvLess;}
+    public int getStudentsWithExcellentGrade(){return studentsWithExcellentGrade;}
+    public int getStudentsWithGoodGrade(){return studentsWithGoodGrade;}
+    public int getStudentsWithSatisfactoryGrade(){return studentsWithSatisfactoryGrade;}
+    public String getAllGrades(){return allGrades;}
+
+
 }
