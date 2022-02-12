@@ -41,7 +41,7 @@ public class StudentGradesGeneric<T extends Number> {
     }
 
     public T[] addGrades(T newGrade) {
-        if (newGrade.intValue() >= 0 && newGrade.intValue() <= 100) {
+        if (newGrade.floatValue() >= 0 && newGrade.floatValue() <= 100) {
             grades = Arrays.copyOf(grades, grades.length + 1);
             grades[grades.length - 1] = newGrade;
             calculateData();
@@ -100,7 +100,7 @@ public class StudentGradesGeneric<T extends Number> {
     public int studentsWithExcellentGrade() {
         studentsWithExcellentGrade = 0;
         for (T i : grades) {
-            if (i.intValue() >= 91 && i.intValue() <= 100)
+            if (i.intValue() >= 91 && i.floatValue() <= 100)
                 studentsWithExcellentGrade++;
         }
         return studentsWithExcellentGrade;
@@ -109,7 +109,7 @@ public class StudentGradesGeneric<T extends Number> {
     public int studentsWithGoodGrade() {
         studentsWithGoodGrade = 0;
         for (T i : grades) {
-            if (i.intValue() >= 71 && i.intValue() <= 90)
+            if (i.intValue() >= 71 && i.floatValue() <= 90)
                 studentsWithGoodGrade++;
         }
         return studentsWithGoodGrade;
@@ -118,7 +118,7 @@ public class StudentGradesGeneric<T extends Number> {
     public int studentsWithSatisfactoryGrade() {
         studentsWithSatisfactoryGrade = 0;
         for (T i : grades) {
-            if (i.intValue() >= 60 && i.intValue() <= 70)
+            if (i.intValue() >= 60 && i.floatValue() <= 70)
                 studentsWithSatisfactoryGrade++;
         }
         return studentsWithSatisfactoryGrade;
