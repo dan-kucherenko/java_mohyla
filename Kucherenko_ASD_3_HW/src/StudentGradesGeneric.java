@@ -15,7 +15,7 @@ public class StudentGradesGeneric<T extends Number> {
 
     StudentGradesGeneric(T[] grades) {
         for (T i : grades) {
-            if (i.intValue() >= 0 && i.intValue() <= 100)
+            if (i.floatValue() >= 0 && i.floatValue() <= 100)
                 this.grades = grades;
             else
                 System.exit(1);
