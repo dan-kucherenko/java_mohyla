@@ -16,7 +16,6 @@ public class Sorter {
 
     public Comparable[] selectionSort(Comparable[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
-            // Find the minimum element in unsorted array
             int min_idx = i;
             for (int j = i + 1; j < arr.length; j++)
                 if (arr[j].compareTo(arr[min_idx]) < 0)
