@@ -76,12 +76,25 @@ public class Sorter {
         while (gap > 1 || swapped) {
             if (gap > 1)
                 gap = (int) (gap / 1.3);
-            for (int i = 0; i + gap <arr.length; i++) {
+            for (int i = 0; i + gap < arr.length; i++) {
                 if (arr[i].compareTo(arr[i + gap]) > 0) {
                     Comparable temp = arr[i];
-                    arr[i] = arr[i+1];
-                    arr[i+gap] = temp;
+                    arr[i] = arr[i + 1];
+                    arr[i + gap] = temp;
                     swapped = true;
+                }
+            }
+        }
+        return arr;
+    }
+
+    public static Comparable[] shellSort(Comparable[] arr) {
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < arr.length; i += 1) {
+                Comparable temp = arr[i];
+                for (int j = i; j >= gap && arr[j - gap].compareTo(temp) > 0; j -= gap) {
+                    arr[j] = arr[j - gap];
+                    arr[j] = temp;
                 }
             }
         }

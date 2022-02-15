@@ -15,6 +15,8 @@ public class TestSorter {
         System.out.println('\n' + "Your array is sorted by budget through insertion sorter: \n" + Arrays.toString(filmsList));
         s.combSort(filmsList);
         System.out.println('\n' + "Your array is sorted by budget through comb sorter: \n" + Arrays.toString(filmsList));
+        s.shellSort(filmsList);
+        System.out.println('\n' + "Your array is sorted by budget through shell sorter: \n" + Arrays.toString(filmsList));
 
 
         CompareFilmTitle compareFilmTitle = new CompareFilmTitle();
