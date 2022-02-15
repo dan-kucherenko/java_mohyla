@@ -13,6 +13,9 @@ public class TestSorter {
         System.out.println('\n' + "Your array is sorted by budget through selection sorter: \n" + Arrays.toString(filmsList));
         s.insertionSort(filmsList);
         System.out.println('\n' + "Your array is sorted by budget through insertion sorter: \n" + Arrays.toString(filmsList));
+        s.combSort(filmsList);
+        System.out.println('\n' + "Your array is sorted by budget through comb sorter: \n" + Arrays.toString(filmsList));
+
 
         CompareFilmTitle compareFilmTitle = new CompareFilmTitle();
         s.bubbleSortComparator(compareFilmTitle, filmsList); //comparing title through bubble sort with comparator

@@ -69,4 +69,22 @@ public class Sorter {
         }
         return arr;
     }
+
+    public static Comparable[] combSort(Comparable[] arr) {
+        int gap = arr.length;
+        boolean swapped = false;
+        while (gap > 1 || swapped) {
+            if (gap > 1)
+                gap = (int) (gap / 1.3);
+            for (int i = 0 - gap; i <arr.length; i++) {
+                if (arr[i].compareTo(arr[i + gap]) > 0) {
+                    Comparable temp = arr[i];
+                    arr[i] = arr[i+1];
+                    arr[i+gap] = temp;
+                    swapped = true;
+                }
+            }
+        }
+        return arr;
+    }
 }
