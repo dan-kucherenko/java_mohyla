@@ -70,6 +70,20 @@ public class Sorter {
         return arr;
     }
 
+    public static Object[] insertionSortComparator(Comparator c, Object[] objects) {
+        for (int i = 1; i < objects.length; i++) {
+            int j = i - 1;
+            while (j >= 0 && c.compare(objects[i], objects[j]) < 0) {
+                Object temp = objects[j];
+                objects[j] = objects[j + 1];
+                objects[j + 1] = temp;
+                j--;
+            }
+
+        }
+        return objects;
+    }
+
     public static Comparable[] combSort(Comparable[] arr) {
         int gap = arr.length;
         boolean swapped = false;
@@ -88,6 +102,24 @@ public class Sorter {
         return arr;
     }
 
+    public static Object[] combSortComparator(Comparator c, Object[] objects) {
+        int gap = objects.length;
+        boolean swapped = false;
+        while (gap > 1 || swapped) {
+            if (gap > 1)
+                gap = (int) (gap / 1.3);
+            for (int i = 0; i + gap < objects.length; i++) {
+                if (c.compare(objects[i], objects[i + gap]) > 0) {
+                    Object temp = objects[i];
+                    objects[i] = objects[i + 1];
+                    objects[i + gap] = temp;
+                    swapped = true;
+                }
+            }
+        }
+        return objects;
+    }
+
     public static Comparable[] shellSort(Comparable[] arr) {
         for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < arr.length; i += 1) {
@@ -99,5 +131,18 @@ public class Sorter {
             }
         }
         return arr;
+    }
+
+    public static Object[] shellSortComparator(Comparator c, Object[] objects) {
+        for (int gap = objects.length / 2; gap > 0; gap /= 2) {
+            for (int i = gap; i < objects.length; i += 1) {
+                Object temp = objects[i];
+                for (int j = i; j >= gap && c.compare(objects[j - gap], temp) > 0; j -= gap) {
+                    objects[j] = objects[j - gap];
+                    objects[j] = temp;
+                }
+            }
+        }
+        return objects;
     }
 }
