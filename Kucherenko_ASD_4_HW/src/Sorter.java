@@ -76,7 +76,7 @@ public class Sorter {
         while (gap > 1 || swapped) {
             if (gap > 1)
                 gap = (int) (gap / 1.3);
-            for (int i = 0 - gap; i <arr.length; i++) {
+            for (int i = 0; i + gap <arr.length; i++) {
                 if (arr[i].compareTo(arr[i + gap]) > 0) {
                     Comparable temp = arr[i];
                     arr[i] = arr[i+1];
