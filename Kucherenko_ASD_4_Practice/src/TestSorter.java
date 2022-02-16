@@ -7,6 +7,9 @@ public class TestSorter {
                 new Film("Lighthouse", 11000000, 2019), new Film("Snatch", 10000000, 2000)};
         System.out.println("Your array before sorting: \n" + Arrays.toString(filmsList));
         Sorter s = new Sorter();
+        /*To see the working of the program choose the
+        sorter you want to use and comment others*/
+
         s.bubbleSort(filmsList); //budget compairing with bubble sorter
         System.out.println('\n' + "Your array is sorted by budget through bubble sorter: \n" + Arrays.toString(filmsList));
         s.selectionSort(filmsList); //budget compairing with selection sorter
