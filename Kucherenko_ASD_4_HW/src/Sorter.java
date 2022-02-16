@@ -71,10 +71,11 @@ public class Sorter {
         for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < arr.length; i += 1) {
                 Comparable temp = arr[i];
-                for (int j = i; j >= gap && arr[j - gap].compareTo(temp) > 0; j -= gap) {
+                int j;
+                for (j = i; j >= gap && arr[j - gap].compareTo(temp) > 0; j -= gap)
                     arr[j] = arr[j - gap];
-                    arr[j] = temp;
-                }
+                arr[j] = temp;
+
             }
         }
         return arr;
@@ -84,10 +85,10 @@ public class Sorter {
         for (int gap = objects.length / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < objects.length; i += 1) {
                 Object temp = objects[i];
-                for (int j = i; j >= gap && c.compare(objects[j - gap], temp) > 0; j -= gap) {
+                int j;
+                for (j = i; j >= gap && c.compare(objects[j - gap], temp) > 0; j -= gap)
                     objects[j] = objects[j - gap];
-                    objects[j] = temp;
-                }
+                objects[j] = temp;
             }
         }
         return objects;
