@@ -1,58 +1,6 @@
 import java.util.Comparator;
 
 public class Sorter {
-    public static Comparable[] bubbleSort(Comparable[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length - i - 1; j++) {
-                if (arr[j].compareTo(arr[j + 1]) > 0) {
-                    Comparable temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-
-            }
-        }
-        return arr;
-    }
-    public static Object[] bubbleSortComparator(Comparator c, Object[] objects) {
-        for (int i = 0; i < objects.length - 1; i++) {
-            for (int j = 0; j < objects.length - i - 1; j++) {
-                if (c.compare(objects[j], objects[j + 1]) > 0) {
-                    Object temp = objects[j];
-                    objects[j] = objects[j + 1];
-                    objects[j + 1] = temp;
-                }
-
-            }
-
-        }
-        return objects;
-    }
-
-    public static Comparable[] selectionSort(Comparable[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            int min_idx = i;
-            for (int j = i + 1; j < arr.length; j++)
-                if (arr[j].compareTo(arr[min_idx]) < 0)
-                    min_idx = j;
-            Comparable temp = arr[min_idx];
-            arr[min_idx] = arr[i];
-            arr[i] = temp;
-        }
-        return arr;
-    }
-    public static Object[] selectionSorterComparator(Comparator c, Object[] objects) {
-        for (int i = 0; i < objects.length - 1; i++) {
-            int min_idx = i;
-            for (int j = i + 1; j < objects.length; j++)
-                if (c.compare(objects[j], objects[min_idx]) < 0)
-                    min_idx = j;
-            Object temp = objects[min_idx];
-            objects[min_idx] = objects[i];
-            objects[i] = temp;
-        }
-        return objects;
-    }
     public static Comparable[] insertionSort(Comparable[] arr) {
         for (int i = 1; i < arr.length; i++) {
             Comparable key = arr[i];
@@ -60,7 +8,7 @@ public class Sorter {
             while (j >= 0 && key.compareTo(arr[j]) < 0) {
                 Comparable temp = arr[j];
                 arr[j] = arr[j + 1];
-                arr[j  + 1] = temp;
+                arr[j + 1] = temp;
                 j--;
             }
         }
@@ -83,14 +31,15 @@ public class Sorter {
 
     public static Comparable[] combSort(Comparable[] arr) {
         int gap = arr.length;
-        boolean swapped = false;
+        boolean swapped = true;
         while (gap > 1 || swapped) {
             if (gap > 1)
                 gap = (int) (gap / 1.3);
-            for (int i = 0; i + gap < arr.length; i++) {
+            swapped = false;
+            for (int i = 0; i < arr.length - gap; i++) {
                 if (arr[i].compareTo(arr[i + gap]) > 0) {
                     Comparable temp = arr[i];
-                    arr[i] = arr[i + 1];
+                    arr[i] = arr[i + gap];
                     arr[i + gap] = temp;
                     swapped = true;
                 }
@@ -101,14 +50,15 @@ public class Sorter {
 
     public static Object[] combSortComparator(Comparator c, Object[] objects) {
         int gap = objects.length;
-        boolean swapped = false;
+        boolean swapped = true;
         while (gap > 1 || swapped) {
             if (gap > 1)
                 gap = (int) (gap / 1.3);
-            for (int i = 0; i + gap < objects.length; i++) {
+            swapped = false;
+            for (int i = 0; i < objects.length - gap; i++) {
                 if (c.compare(objects[i], objects[i + gap]) > 0) {
                     Object temp = objects[i];
-                    objects[i] = objects[i + 1];
+                    objects[i] = objects[i + gap];
                     objects[i + gap] = temp;
                     swapped = true;
                 }
