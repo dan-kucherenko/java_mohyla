@@ -19,13 +19,13 @@ public class TimeTester {
     }
 
     public static void main(String[] args) {
-
         calculateTimeForBubbleSorting();
         calculateTimeForSelectionSorting();
         calculateTimeForInsertionSorting();
         calculateTimeForCombSorting();
-
-
+        calculateTimeForShellSorting();
+        calculateTimeForQuickSorting();
+        calculateTimeForMergeSorting();
         printWriter.close();
     }
 
@@ -66,6 +66,31 @@ public class TimeTester {
         Stopwatch swComb = new Stopwatch();
         s.combSort(numbers);
         res = swComb.elapsedTime();
-        printWriter.println("Час виконання алгоритму комбінованого сортування: " + res);
+        printWriter.println("Час виконання алгоритму сортування гребінцем: " + res);
     }
+
+    private static void calculateTimeForShellSorting() {
+        generateNewArray(numbers);
+        Stopwatch swComb = new Stopwatch();
+        s.shellSort(numbers);
+        res = swComb.elapsedTime();
+        printWriter.println("Час виконання алгоритму сортування Шелла: " + res);
+    }
+
+    private static void calculateTimeForQuickSorting() {
+        generateNewArray(numbers);
+        Stopwatch swComb = new Stopwatch();
+        s.quickSort(numbers, 0, numbers.length - 1);
+        res = swComb.elapsedTime();
+        printWriter.println("Час виконання алгоритму швидкого сортування: " + res);
+    }
+
+    private static void calculateTimeForMergeSorting() {
+        generateNewArray(numbers);
+        Stopwatch swComb = new Stopwatch();
+        s.mergeSort(numbers);
+        res = swComb.elapsedTime();
+        printWriter.println("Час виконання алгоритму сортування злиттям: " + res);
+    }
+
 }
