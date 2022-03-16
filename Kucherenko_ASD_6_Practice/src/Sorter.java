@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Sorter {
-    public void bubbleSort(int[] arr) {
+    public static void bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
@@ -55,6 +55,7 @@ public class Sorter {
             }
         }
     }
+
     public static void shellSort(int[] arr) {
         for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < arr.length; i += 1) {
@@ -93,6 +94,10 @@ public class Sorter {
 
         quickSort(arr, lowIndex, leftPointer - 1);
         quickSort(arr, leftPointer + 1, highIndex);
+    }
+
+    public static void quickSortGeneral(int[] array) {
+        quickSort(array, 0, array.length - 1);
     }
 
     public static void mergeSort(int[] arr) {

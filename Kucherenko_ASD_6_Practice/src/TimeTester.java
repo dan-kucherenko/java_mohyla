@@ -5,9 +5,8 @@ import java.util.Random;
 
 public class TimeTester {
 
-    private static int[] numbers = new int[2048];
+    private static int[] numbers = new int[1024];
     private static double res;
-    private static Sorter s = new Sorter();
     private static PrintWriter printWriter;
 
     static {
@@ -19,6 +18,7 @@ public class TimeTester {
     }
 
     public static void main(String[] args) {
+
         calculateTimeForBubbleSorting();
         calculateTimeForSelectionSorting();
         calculateTimeForInsertionSorting();
@@ -29,8 +29,8 @@ public class TimeTester {
         printWriter.close();
     }
 
-    private static void generateNewArray(int[] numbers) {
-        Random r = new Random();
+    private static void generateNewRandomArray(int[] numbers) {
+        Random r = new Random(100);
         for (int i = 0; i < numbers.length; i++) {
             int randomNum = r.nextInt();
             numbers[i] = randomNum;
@@ -38,58 +38,58 @@ public class TimeTester {
     }
 
     private static void calculateTimeForBubbleSorting() {
-        generateNewArray(numbers);
+        generateNewRandomArray(numbers);
         Stopwatch swBubble = new Stopwatch();
-        s.bubbleSort(numbers);
+        Sorter.bubbleSort(numbers);
         res = swBubble.elapsedTime();
         printWriter.println("Час виконання алгоритму бульбашкового сортування: " + res);
     }
 
     private static void calculateTimeForSelectionSorting() {
-        generateNewArray(numbers);
+        generateNewRandomArray(numbers);
         Stopwatch swSelection = new Stopwatch();
-        s.selectionSort(numbers);
+        Sorter.selectionSort(numbers);
         res = swSelection.elapsedTime();
         printWriter.println("Час виконання алгоритму вибіркового сортування: " + res);
     }
 
     private static void calculateTimeForInsertionSorting() {
-        generateNewArray(numbers);
+        generateNewRandomArray(numbers);
         Stopwatch swInsertion = new Stopwatch();
-        s.insertionSort(numbers);
+        Sorter.insertionSort(numbers);
         res = swInsertion.elapsedTime();
         printWriter.println("Час виконання алгоритму вставного сортування: " + res);
     }
 
     private static void calculateTimeForCombSorting() {
-        generateNewArray(numbers);
+        generateNewRandomArray(numbers);
         Stopwatch swComb = new Stopwatch();
-        s.combSort(numbers);
+        Sorter.combSort(numbers);
         res = swComb.elapsedTime();
         printWriter.println("Час виконання алгоритму сортування гребінцем: " + res);
     }
 
     private static void calculateTimeForShellSorting() {
-        generateNewArray(numbers);
-        Stopwatch swComb = new Stopwatch();
-        s.shellSort(numbers);
-        res = swComb.elapsedTime();
+        generateNewRandomArray(numbers);
+        Stopwatch swShell = new Stopwatch();
+        Sorter.shellSort(numbers);
+        res = swShell.elapsedTime();
         printWriter.println("Час виконання алгоритму сортування Шелла: " + res);
     }
 
     private static void calculateTimeForQuickSorting() {
-        generateNewArray(numbers);
-        Stopwatch swComb = new Stopwatch();
-        s.quickSort(numbers, 0, numbers.length - 1);
-        res = swComb.elapsedTime();
+        generateNewRandomArray(numbers);
+        Stopwatch swQuick = new Stopwatch();
+        Sorter.quickSort(numbers, 0, numbers.length - 1);
+        res = swQuick.elapsedTime();
         printWriter.println("Час виконання алгоритму швидкого сортування: " + res);
     }
 
     private static void calculateTimeForMergeSorting() {
-        generateNewArray(numbers);
-        Stopwatch swComb = new Stopwatch();
-        s.mergeSort(numbers);
-        res = swComb.elapsedTime();
+        generateNewRandomArray(numbers);
+        Stopwatch swMerge = new Stopwatch();
+        Sorter.mergeSort(numbers);
+        res = swMerge.elapsedTime();
         printWriter.println("Час виконання алгоритму сортування злиттям: " + res);
     }
 
