@@ -1,4 +1,5 @@
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,8 +15,20 @@ public class TimeTester {
     public static void main(String[] args) {
         try {
             printWriter = new PrintWriter(new FileWriter("timeTester.txt"));
-            printWriter.println("Random array:");
-            createRandomArrays();       //calculate algorithm time execution for arrays with random numbers
+            printWriter.println("Random arrays:\n");
+            createRandomArrays();   //calculate algorithm time execution for arrays with random numbers
+            calculateTimeForAllAlgorithms();
+
+            printWriter.println("\nSorted arrays:\n");
+            createSortedArrays();   //calculate algorithm time execution for sorted arrays
+            calculateTimeForAllAlgorithms();
+
+            printWriter.println("\nReverse sorted arrays:\n");
+            createReverseSortedArray();   //calculate algorithm time execution for reverse sorted arrays
+            calculateTimeForAllAlgorithms();
+
+            printWriter.println("\nArrays with the same element:\n");
+            createArraysWithSameElement();  //calculate algorithm time execution for arrays with same numbers
             calculateTimeForAllAlgorithms();
 
             printWriter.close();
@@ -32,6 +45,7 @@ public class TimeTester {
             res = swBubble.elapsedTime();
             printWriter.print("{" + arrayLength[i] + "=" + res + "} ");
         }
+        printWriter.print('\n');
     }
 
     private static void calculateTimeForSelectionSorting() {
@@ -42,6 +56,7 @@ public class TimeTester {
             res = swSelection.elapsedTime();
             printWriter.print("{" + arrayLength[i] + "=" + res + "} ");
         }
+        printWriter.print('\n');
     }
 
     private static void calculateTimeForInsertionSorting() {
@@ -52,6 +67,7 @@ public class TimeTester {
             res = swInsertion.elapsedTime();
             printWriter.print("{" + arrayLength[i] + "=" + res + "} ");
         }
+        printWriter.print('\n');
     }
 
     private static void calculateTimeForCombSorting() {
@@ -62,6 +78,7 @@ public class TimeTester {
             res = swComb.elapsedTime();
             printWriter.print("{" + arrayLength[i] + "=" + res + "} ");
         }
+        printWriter.print('\n');
     }
 
     private static void calculateTimeForShellSorting() {
@@ -72,6 +89,7 @@ public class TimeTester {
             res = swShell.elapsedTime();
             printWriter.print("{" + arrayLength[i] + "=" + res + "} ");
         }
+        printWriter.print('\n');
     }
 
     private static void calculateTimeForQuickSorting() {
@@ -82,6 +100,7 @@ public class TimeTester {
             res = swQuick.elapsedTime();
             printWriter.print("{" + arrayLength[i] + "=" + res + "} ");
         }
+        printWriter.print('\n');
     }
 
     private static void calculateTimeForMergeSorting() {
@@ -92,11 +111,30 @@ public class TimeTester {
             res = swMerge.elapsedTime();
             printWriter.print("{" + arrayLength[i] + "=" + res + "} ");
         }
+        printWriter.print('\n');
     }
 
     private static void createRandomArrays() {
         for (int i = 0; i < arrayLength.length; i++)
             arrayList.add(GenerateAnArray.generateNewRandomArray(arrayLength[i]));
+    }
+
+    private static void createSortedArrays() {
+        arrayList.clear();
+        for (int i = 0; i < arrayLength.length; i++)
+            arrayList.add(GenerateAnArray.generateSortedArray(arrayLength[i]));
+    }
+
+    private static void createReverseSortedArray() {
+        arrayList.clear();
+        for (int i = 0; i < arrayLength.length; i++)
+            arrayList.add(GenerateAnArray.generateReverseSortedArray(arrayLength[i]));
+    }
+
+    private static void createArraysWithSameElement() {
+        arrayList.clear();
+        for (int i = 0; i < arrayLength.length; i++)
+            arrayList.add(GenerateAnArray.generateNewArrayWithSameElement(arrayLength[i]));
     }
 
     private static void calculateTimeForAllAlgorithms() {
@@ -108,5 +146,4 @@ public class TimeTester {
         calculateTimeForQuickSorting();
         calculateTimeForMergeSorting();
     }
-
 }
