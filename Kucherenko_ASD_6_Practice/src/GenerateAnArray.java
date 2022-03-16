@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class GenerateAnArray {
     public static void generateSortedArray(int arrayLength) {
-        int[] sortedArray = generateNewRandomIntArray(arrayLength);
+        int[] sortedArray = generateNewRandomArray(arrayLength);
         Sorter.mergeSort(sortedArray);
     }
 
@@ -14,13 +14,13 @@ public class GenerateAnArray {
     }
 
     public static void generateReverseSortedArray(int arrayLength) throws IOException {
-        int[] reverseSortedArray = generateNewRandomIntArray(arrayLength);
+        int[] reverseSortedArray = generateNewRandomArray(arrayLength);
         Sorter.mergeSort(reverseSortedArray);
         for (int i = arrayLength - 1; i >= 0; i--)
             reverseSortedArray[arrayLength - i] = reverseSortedArray[i];
     }
 
-    public static int[] generateNewRandomIntArray(int arrayLength) {
+    public static int[] generateNewRandomArray(int arrayLength) {
         int[] randomArrayOfInt = new int[arrayLength];
         Random r = new Random();
         for (int i = 0; i < arrayLength; i++)
