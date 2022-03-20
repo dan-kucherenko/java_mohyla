@@ -45,7 +45,7 @@ public class CreateAndCalculate {
         printWriter.print("Merge sort with 2 modifications: ");
         for (int i = 0; i < ARRAY_LENGTH.length; i++) {
             Stopwatch swMergeWithTwoModifications = new Stopwatch();
-            Sorter.mergeSort(arrayList.get(i));
+            Sorter.mergeSortWithTwoModifications(arrayList.get(i));
             res = swMergeWithTwoModifications.elapsedTime();
             printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
         }

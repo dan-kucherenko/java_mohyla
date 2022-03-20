@@ -1,37 +1,6 @@
 import java.util.Random;
 
 public class Sorter {
-    public static void quickSort(int[] arr, int lowIndex, int highIndex) {
-        if (lowIndex >= highIndex)
-            return;
-        int pivotIndex = new Random().nextInt(highIndex - lowIndex) + lowIndex;
-        int pivot = arr[pivotIndex];
-        int temp3 = arr[pivotIndex];
-        arr[pivotIndex] = arr[highIndex];
-        arr[highIndex] = temp3;
-
-        int leftPointer = lowIndex, rightPointer = highIndex;
-        while (leftPointer < rightPointer) {
-            while (arr[leftPointer] <= pivot && leftPointer < rightPointer)
-                leftPointer++;
-            while (arr[rightPointer] >= pivot && rightPointer > leftPointer)
-                rightPointer--;
-            int temp = arr[leftPointer];
-            arr[leftPointer] = arr[rightPointer];
-            arr[rightPointer] = temp;
-        }
-        int temp2 = arr[leftPointer];
-        arr[leftPointer] = arr[highIndex];
-        arr[highIndex] = temp2;
-
-        quickSort(arr, lowIndex, leftPointer - 1);
-        quickSort(arr, leftPointer + 1, highIndex);
-    }
-
-    public static void quickSortGeneral(int[] array) {
-        quickSort(array, 0, array.length - 1);
-    }
-
     public static void mergeSort(int[] arr) {
         int length = arr.length;
         if (length < 2)
@@ -76,12 +45,58 @@ public class Sorter {
     public static void mergeSortWithComparing(int[] arr) {
     }
 
-    public static void quickSortGeneralWithInsertion(int[] arr) {
+    public static void mergeSortWithTwoModifications(int[] arr) {
     }
 
-    public static void quickSortGeneralWithDijkstra(int[] arr) {
+    private static void quickSort(int[] arr, int lowIndex, int highIndex) {
+        if (lowIndex >= highIndex)
+            return;
+        int pivotIndex = new Random().nextInt(highIndex - lowIndex) + lowIndex;
+        int pivot = arr[pivotIndex];
+        int temp3 = arr[pivotIndex];
+        arr[pivotIndex] = arr[highIndex];
+        arr[highIndex] = temp3;
+
+        int leftPointer = lowIndex, rightPointer = highIndex;
+        while (leftPointer < rightPointer) {
+            while (arr[leftPointer] <= pivot && leftPointer < rightPointer)
+                leftPointer++;
+            while (arr[rightPointer] >= pivot && rightPointer > leftPointer)
+                rightPointer--;
+            int temp = arr[leftPointer];
+            arr[leftPointer] = arr[rightPointer];
+            arr[rightPointer] = temp;
+        }
+        int temp2 = arr[leftPointer];
+        arr[leftPointer] = arr[highIndex];
+        arr[highIndex] = temp2;
+
+        quickSort(arr, lowIndex, leftPointer - 1);
+        quickSort(arr, leftPointer + 1, highIndex);
     }
 
-    public static void quickSortGeneralWithTwoModifications(int[] arr) {
+    public static void quickSortGeneral(int[] array) {
+        quickSort(array, 0, array.length - 1);
+    }
+
+    private static void quickSortWithInsertion(int[] arr, int lowIndex, int highIndex) {
+    }
+
+    public static void quickSortGeneralWithInsertion(int[] array) {
+        quickSortWithInsertion(array, 0, array.length - 1);
+    }
+
+    private static void quickSortWithDijkstra(int[] arr, int lowIndex, int highIndex) {
+    }
+
+    public static void quickSortGeneralWithDijkstra(int[] array) {
+        quickSortWithDijkstra(array, 0, array.length - 1);
+    }
+
+    private static void quickSortWithTwoModifications(int[] arr, int lowIndex, int highIndex) {
+    }
+
+    public static void quickSortGeneralWithTwoModifications(int[] array) {
+        quickSortWithTwoModifications(array, 0, array.length - 1);
     }
 }
