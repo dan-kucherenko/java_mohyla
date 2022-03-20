@@ -69,4 +69,19 @@ public class Sorter {
             k++;
         }
     }
+
+    public static void mergeSortWithInsertion(int[] arr) {
+    }
+
+    public static void mergeSortWithComparing(int[] arr) {
+    }
+
+    public static void quickSortGeneralWithInsertion(int[] arr) {
+    }
+
+    public static void quickSortGeneralWithDijkstra(int[] arr) {
+    }
+
+    public static void quickSortGeneralWithTwoModifications(int[] arr) {
+    }
 }
