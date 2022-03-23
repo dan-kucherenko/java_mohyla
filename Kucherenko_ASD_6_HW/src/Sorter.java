@@ -40,6 +40,28 @@ public class Sorter {
     }
 
     public static void mergeSortWithInsertion(int[] arr) {
+        int length = arr.length;
+        if (length < 2)
+            return;
+        int midIndex = length / 2;
+        int[] leftHalfArray = new int[midIndex];          //split the array to 2
+        int[] rightHalfArray = new int[length - midIndex];
+        for (int i = 0; i < midIndex; i++)
+            leftHalfArray[i] = arr[i];  //write each array
+        for (int i = midIndex; i < length; i++)
+            rightHalfArray[i - midIndex] = arr[i];
+        mergeSort(leftHalfArray);
+        mergeSort(rightHalfArray);
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && key < arr[j]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                j--;
+            }
+        }
     }
 
     public static void mergeSortWithComparing(int[] arr) {
