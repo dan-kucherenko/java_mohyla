@@ -44,24 +44,15 @@ public class Sorter {
         if (length < 2)
             return;
         int midIndex = length / 2;
-        int[] leftHalfArray = new int[midIndex];          //split the array to 2
+        int[] leftHalfArray = new int[midIndex];    //split the array to 2
         int[] rightHalfArray = new int[length - midIndex];
         for (int i = 0; i < midIndex; i++)
-            leftHalfArray[i] = arr[i];  //write each array
+            leftHalfArray[i] = arr[i];  //write "left" array
         for (int i = midIndex; i < length; i++)
-            rightHalfArray[i - midIndex] = arr[i];
+            rightHalfArray[i - midIndex] = arr[i];  //write "right" array
         mergeSort(leftHalfArray);
         mergeSort(rightHalfArray);
-        for (int i = 1; i < arr.length; i++) {
-            int key = arr[i];
-            int j = i - 1;
-            while (j >= 0 && key < arr[j]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                j--;
-            }
-        }
+        insertionSort(arr);
     }
 
     public static void mergeSortWithComparing(int[] arr) {
@@ -69,12 +60,12 @@ public class Sorter {
         if (length < 2)
             return;
         int midIndex = length / 2;
-        int[] leftHalfArray = new int[midIndex];          //split the array to 2
+        int[] leftHalfArray = new int[midIndex];    //split the array to 2
         int[] rightHalfArray = new int[length - midIndex];
         for (int i = 0; i < midIndex; i++)
-            leftHalfArray[i] = arr[i];  //write each array
+            leftHalfArray[i] = arr[i];  //write "left" array
         for (int i = midIndex; i < length; i++)
-            rightHalfArray[i - midIndex] = arr[i];
+            rightHalfArray[i - midIndex] = arr[i]; //write "right" array
         if (leftHalfArray[leftHalfArray.length - 1] < rightHalfArray[0]) {
             for (int i = 0; i < midIndex; i++) {
                 arr[i] = leftHalfArray[i];
@@ -142,19 +133,6 @@ public class Sorter {
         quickSort(array, 0, array.length - 1);
     }
 
-    public static void insertionSort(int[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int key = arr[i];
-            int j = i - 1;
-            while (j >= 0 && key < arr[j]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-                j--;
-            }
-        }
-    }
-
     private static void quickSortWithInsertion(int[] arr, int lowIndex, int highIndex) {
         if (lowIndex >= highIndex)
             return;
@@ -203,5 +181,18 @@ public class Sorter {
 
     public static void quickSortGeneralWithTwoModifications(int[] array) {
         quickSortWithTwoModifications(array, 0, array.length - 1);
+    }
+
+    public static void insertionSort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && key < arr[j]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                j--;
+            }
+        }
     }
 }
