@@ -1,7 +1,7 @@
 public class Stopwatch {
-    private final long start;
+    private long start;
 
-    public Stopwatch() {
+    public void startTime() {
         start = System.nanoTime();
     }
 
