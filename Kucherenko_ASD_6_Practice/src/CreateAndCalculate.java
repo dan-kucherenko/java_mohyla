@@ -21,7 +21,6 @@ public class CreateAndCalculate {
         }
     }
 
-
     class CalculateTimeForBubbleSorting extends CalculateTime {
         public void calculateTimeForBubbleSorting() {
             printWriter.print("Bubble sort: ");
@@ -70,82 +69,6 @@ public class CreateAndCalculate {
             calculateTime();
         }
     }
-//        public void calculateTimeForBubbleSorting() {
-//        printWriter.print("Bubble sort: ");
-//        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-//            Stopwatch swBubble = new Stopwatch();
-//            Sorter.bubbleSort(arrayList.get(i));
-//            res = swBubble.elapsedTime();
-//            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
-//        }
-//        printWriter.print('\n');
-//    }
-
-//    public void calculateTimeForSelectionSorting() {
-//        printWriter.print("Selection sort: ");
-//        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-//            Stopwatch swSelection = new Stopwatch();
-//            Sorter.selectionSort(arrayList.get(i));
-//            res = swSelection.elapsedTime();
-//            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
-//        }
-//        printWriter.print('\n');
-//    }
-
-//    public void calculateTimeForInsertionSorting() {
-//        printWriter.print("Insertion sort: ");
-//        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-//            Stopwatch swInsertion = new Stopwatch();
-//            Sorter.insertionSort(arrayList.get(i));
-//            res = swInsertion.elapsedTime();
-//            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
-//        }
-//        printWriter.print('\n');
-//    }
-
-//    public void calculateTimeForCombSorting() {
-//        printWriter.print("Comb sort: ");
-//        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-//            Stopwatch swComb = new Stopwatch();
-//            Sorter.combSort(arrayList.get(i));
-//            res = swComb.elapsedTime();
-//            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
-//        }
-//        printWriter.print('\n');
-//    }
-
-//    public void calculateTimeForShellSorting() {
-//        printWriter.print("Shell sort: ");
-//        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-//            Stopwatch swShell = new Stopwatch();
-//            Sorter.shellSort(arrayList.get(i));
-//            res = swShell.elapsedTime();
-//            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
-//        }
-//        printWriter.print('\n');
-//    }
-
-//    public void calculateTimeForQuickSorting() {
-//        printWriter.print("Quick sort: ");
-//        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-//            Stopwatch swQuick = new Stopwatch();
-//            Sorter.quickSortGeneral(arrayList.get(i));
-//            res = swQuick.elapsedTime();
-//            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
-//        }
-//        printWriter.print('\n');
-//    }
-
-//    public void calculateTimeForMergeSorting() {
-//        printWriter.print("Merge sort: ");
-//        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-//            Stopwatch swMerge = new Stopwatch();
-//            Sorter.mergeSort(arrayList.get(i));
-//            res = swMerge.elapsedTime();
-//            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
-//        }
-//        printWriter.print('\n');
-//    }
 
     public void calculateTimeForAllAlgorithms() {
         CalculateTimeForBubbleSorting calcBubble = new CalculateTimeForBubbleSorting();
