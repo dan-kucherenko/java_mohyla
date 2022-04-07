@@ -6,7 +6,7 @@ public class CreateAndCalculate {
     private ArrayList<int[]> arrayList = new ArrayList<>();
     private final int[] ARRAY_LENGTH = {1024, 2048, 4096, 8192, 16384, 32768};
     private final PrintWriter printWriter = TimeTester.printWriter;
-    private Stopwatch sw;
+    public Stopwatch sw = new Stopwatch();
 
     public void calculateTimeForBubbleSorting() {
         printWriter.print("Bubble sort: ");
