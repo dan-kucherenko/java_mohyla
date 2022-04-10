@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class Sorter {
     public static void mergeSort(int[] arr) {
@@ -43,16 +45,41 @@ public class Sorter {
         int length = arr.length;
         if (length < 2)
             return;
-        int midIndex = length / 2;
-        int[] leftHalfArray = new int[midIndex];    //split the array to 2
-        int[] rightHalfArray = new int[length - midIndex];
-        for (int i = 0; i < midIndex; i++)
-            leftHalfArray[i] = arr[i];  //write "left" array
-        for (int i = midIndex; i < length; i++)
-            rightHalfArray[i - midIndex] = arr[i];  //write "right" array
-        mergeSort(leftHalfArray);
-        mergeSort(rightHalfArray);
-        insertionSort(arr);
+        if (length < 10)
+            insertionSort(arr);
+        else {
+            int midIndex = length / 2;
+            int[] leftHalfArray = new int[midIndex];    //split the array to 2
+            int[] rightHalfArray = new int[length - midIndex];
+            for (int i = 0; i < midIndex; i++)
+                leftHalfArray[i] = arr[i];  //write "left" array
+            for (int i = midIndex; i < length; i++)
+                rightHalfArray[i - midIndex] = arr[i];  //write "right" array
+            mergeSortWithInsertion(leftHalfArray);
+            mergeSortWithInsertion(rightHalfArray);
+            int leftSize = leftHalfArray.length, rightSize = rightHalfArray.length;
+            int i = 0, j = 0, k = 0;
+            while (i < leftSize && j < rightSize) {
+                if (leftHalfArray[i] <= rightHalfArray[j]) {
+                    arr[k] = leftHalfArray[i];
+                    i++;
+                } else {
+                    arr[k] = rightHalfArray[j];
+                    j++;
+                }
+                k++;
+            }
+            while (i < leftSize) {
+                arr[k] = leftHalfArray[i];
+                i++;
+                k++;
+            }
+            while (j < rightSize) {
+                arr[k] = rightHalfArray[j];
+                j++;
+                k++;
+            }
+        }
     }
 
     public static void mergeSortWithComparing(int[] arr) {
@@ -67,39 +94,82 @@ public class Sorter {
         for (int i = midIndex; i < length; i++)
             rightHalfArray[i - midIndex] = arr[i]; //write "right" array
         if (leftHalfArray[leftHalfArray.length - 1] < rightHalfArray[0]) {
-            for (int i = 0; i < midIndex; i++) {
-                arr[i] = leftHalfArray[i];
-                arr[i + leftHalfArray.length] = rightHalfArray[i];
-            }
-        }
-        mergeSortWithComparing(leftHalfArray);
-        mergeSortWithComparing(rightHalfArray);
+            System.arraycopy(leftHalfArray, 0, arr, 0, leftHalfArray.length);
+            System.arraycopy(rightHalfArray, 0, arr, leftHalfArray.length, rightHalfArray.length);
+        } else {
+            mergeSortWithComparing(leftHalfArray);
+            mergeSortWithComparing(rightHalfArray);
 
-        int leftSize = leftHalfArray.length, rightSize = rightHalfArray.length;
-        int i = 0, j = 0, k = 0;
-        while (i < leftSize && j < rightSize) {
-            if (leftHalfArray[i] <= rightHalfArray[j]) {
+            int leftSize = leftHalfArray.length, rightSize = rightHalfArray.length;
+            int i = 0, j = 0, k = 0;
+            while (i < leftSize && j < rightSize) {
+                if (leftHalfArray[i] <= rightHalfArray[j]) {
+                    arr[k] = leftHalfArray[i];
+                    i++;
+                } else {
+                    arr[k] = rightHalfArray[j];
+                    j++;
+                }
+                k++;
+            }
+            while (i < leftSize) {
                 arr[k] = leftHalfArray[i];
                 i++;
-            } else {
+                k++;
+            }
+            while (j < rightSize) {
                 arr[k] = rightHalfArray[j];
                 j++;
+                k++;
             }
-            k++;
-        }
-        while (i < leftSize) {
-            arr[k] = leftHalfArray[i];
-            i++;
-            k++;
-        }
-        while (j < rightSize) {
-            arr[k] = rightHalfArray[j];
-            j++;
-            k++;
         }
     }
 
     public static void mergeSortWithTwoModifications(int[] arr) {
+        int length = arr.length;
+        if (length < 2)
+            return;
+        if (length < 10)
+            insertionSort(arr);
+        else {
+            int midIndex = length / 2;
+            int[] leftHalfArray = new int[midIndex];    //split the array to 2
+            int[] rightHalfArray = new int[length - midIndex];
+            for (int i = 0; i < midIndex; i++)
+                leftHalfArray[i] = arr[i];  //write "left" array
+            for (int i = midIndex; i < length; i++)
+                rightHalfArray[i - midIndex] = arr[i]; //write "right" array
+            if (leftHalfArray[leftHalfArray.length - 1] < rightHalfArray[0]) {
+                System.arraycopy(leftHalfArray, 0, arr, 0, leftHalfArray.length);
+                System.arraycopy(rightHalfArray, 0, arr, leftHalfArray.length, rightHalfArray.length);
+            }
+            mergeSortWithTwoModifications(leftHalfArray);
+            mergeSortWithTwoModifications(rightHalfArray);
+
+            int leftSize = leftHalfArray.length, rightSize = rightHalfArray.length;
+            int i = 0, j = 0, k = 0;
+            while (i < leftSize && j < rightSize) {
+                if (leftHalfArray[i] <= rightHalfArray[j]) {
+                    arr[k] = leftHalfArray[i];
+                    i++;
+                } else {
+                    arr[k] = rightHalfArray[j];
+                    j++;
+                }
+                k++;
+            }
+            while (i < leftSize) {
+                arr[k] = leftHalfArray[i];
+                i++;
+                k++;
+            }
+            while (j < rightSize) {
+                arr[k] = rightHalfArray[j];
+                j++;
+                k++;
+            }
+        }
+
     }
 
     private static void quickSort(int[] arr, int lowIndex, int highIndex) {
