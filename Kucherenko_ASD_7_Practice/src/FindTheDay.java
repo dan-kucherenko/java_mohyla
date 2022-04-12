@@ -14,7 +14,7 @@ public class FindTheDay {
         getNumOfDaysInMonth(month, yearInInt, dayInInt);
         int leapYrs = ((yearInInt - 1) - 1920) / 4 + 1;
         int remainder = ((yearInInt - 1920) + leapYrs + (getADayInYear(month, dayInInt, yearInInt) - 1)) % 7;
-        int dayOfWeek = 4;
+        String theDay = getTheDayOfTheWeek(remainder);
     }
 
     private void getNumOfDaysInMonth(String month, int year, int day) {
@@ -50,4 +50,14 @@ public class FindTheDay {
         }
         return day;
     }
+
+    private String getTheDayOfTheWeek(int remainder) {
+        int dayOfWeek = 4;
+        for (int i = 0; i < remainder; i++) {
+            if (dayOfWeek == 7) dayOfWeek = 1;
+            else dayOfWeek++;
+        }
+        return DAYS_OF_WEEK[dayOfWeek];
+    }
+
 }
