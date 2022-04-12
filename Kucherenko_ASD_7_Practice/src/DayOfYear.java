@@ -6,7 +6,6 @@ public class DayOfYear {
         System.out.print("Enter the date for the day you want to know: ");
         String date = sc.nextLine();
         FindTheDay ftd = new FindTheDay();
-        System.out.println(5%6);
-
+        System.out.println("День тижня введеної вами дати " + date + " це " + ftd.getTheDay(date));
     }
 }
