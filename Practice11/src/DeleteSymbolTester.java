@@ -9,7 +9,7 @@ public class DeleteSymbolTester extends DeleteSymbol {
         String orig = sc.nextLine();
         System.out.print("Введіть фрагмент на який замінити: ");
         String repl = sc.nextLine();
-        str = removeAllOccurences(str, orig, repl);
+        str = removeAllOccurrences(str, orig, repl);
         System.out.println(str);
     }
 }
