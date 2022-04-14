@@ -35,37 +35,34 @@ public class ActionsWithFile {
     boolean containsString(ArrayList<String> linesOfFile) {
         boolean contains = false;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the string you want to find");
+        System.out.print("Enter the string you want to find: ");
         String lineToFind = sc.nextLine();
         for (int i = 0; i < linesOfFile.size(); i++) {
             if (lineToFind.equals(linesOfFile.get(i)))
                 contains = true;
         }
+        if (contains)
+            System.out.println("Yes, your file contains a string you have written");
+        else
+            System.out.println("Your file doesn't contain a string you have written");
+
         return contains;
     }
 
-    int[] allPlacesOfContains() {
-        int[] allPlaces = new int[0];
-        return allPlaces;
+    int[] indexOfLinesThatContain(ArrayList<String> linesOfFile) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the SUBstring you want to find: ");
+        String substringToFind = sc.nextLine();
+        ArrayList<Integer> linesIndexes = new ArrayList<>();
+        for (int i = 0; i < linesOfFile.size(); i++) {
+            if (linesOfFile.get(i).contains(substringToFind))
+                linesIndexes.add(linesOfFile.indexOf(linesOfFile.get(i)));
+        }
+        int[] linesIndexesAsArray = new int[linesIndexes.size()];
+        for (int i = 0; i< linesIndexes.size(); i++)
+            linesIndexesAsArray[i] = linesIndexes.get(i)+1;
+        return linesIndexesAsArray;
     }
-
-//    class CompareLines implements Comparable<CompareLines> {
-//        String s1;
-//
-//        public CompareLines(String s1, String s2) {
-//            this.s1 = s1;
-//        }
-//
-//        @Override
-//        public int compareTo(CompareLines that) {
-//            int i = 0;
-//            while (this.s1.charAt(i) - that.s1.charAt(i) == 0) {
-//                i++;
-//                return this.s1.charAt(i) - that.s1.charAt(i);
-//            }
-//            return this.s1.charAt(i) - that.s1.charAt(i);
-//        }
-//    }
 
     void sortFile() {
         try {
@@ -87,6 +84,10 @@ public class ActionsWithFile {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
+    }
+
+    void swapTheLines() {
+
     }
 
 
