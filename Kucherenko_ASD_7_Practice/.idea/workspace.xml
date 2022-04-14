@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a19c816-82e0-4b7b-8104-b7d20cadc1bf" name="Changes" comment="Final commit" />
+    <list default="true" id="6a19c816-82e0-4b7b-8104-b7d20cadc1bf" name="Changes" comment="Final commit">
+      <change afterPath="$PROJECT_DIR$/../Kucherenko_ASD_7_HW/src/Sorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Kucherenko_ASD_7_HW/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Kucherenko_ASD_7_HW/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Kucherenko_ASD_7_HW/src/ReadAFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Kucherenko_ASD_7_HW/src/ReadAFile.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

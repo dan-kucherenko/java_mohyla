@@ -1,10 +1,12 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        ReadAFile raf = new ReadAFile();
+        ActionsWithFile raf = new ActionsWithFile();
         ArrayList<String> lines = raf.readAFile();
         raf.writeToFile(lines);
+        System.out.println(raf.containsString(lines));
+        raf.sortFile();
+
     }
 }
