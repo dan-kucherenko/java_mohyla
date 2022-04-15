@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class ActionsWithFile {
@@ -42,9 +43,9 @@ public class ActionsWithFile {
                 contains = true;
         }
         if (contains)
-            System.out.println("Yes, your file contains a string you have written");
+            System.out.println("Yes, your file contains a string you have written \n");
         else
-            System.out.println("Your file doesn't contain a string you have written");
+            System.out.println("Your file doesn't contain a string you have written \n");
 
         return contains;
     }
@@ -59,8 +60,8 @@ public class ActionsWithFile {
                 linesIndexes.add(linesOfFile.indexOf(linesOfFile.get(i)));
         }
         int[] linesIndexesAsArray = new int[linesIndexes.size()];
-        for (int i = 0; i< linesIndexes.size(); i++)
-            linesIndexesAsArray[i] = linesIndexes.get(i)+1;
+        for (int i = 0; i < linesIndexes.size(); i++)
+            linesIndexesAsArray[i] = linesIndexes.get(i) + 1;
         return linesIndexesAsArray;
     }
 
@@ -87,7 +88,33 @@ public class ActionsWithFile {
     }
 
     void swapTheLines() {
+        try {
+            PrintWriter pwForSwapping = new PrintWriter(new FileWriter("files/copyWithSwapping"));
+            Scanner sc = new Scanner(System.in);
+            String fileNameToRead, line_A, line_B, text;
+            System.out.print("Enter the name of the file to read: ");
+            fileNameToRead = "files/" + sc.nextLine();
+            BufferedReader br = new BufferedReader(new FileReader(fileNameToRead));
+            System.out.print("Enter the first line to swap: ");
+            line_A = sc.nextLine();
+            System.out.print("Enter the second line to swap: ");
+            line_B = sc.nextLine();
 
+            LinkedList<String> linesOfFileToSwap = new LinkedList<>();
+            while ((text = br.readLine()) != null)
+                linesOfFileToSwap.add(text);
+            if (!linesOfFileToSwap.contains(line_A) || !linesOfFileToSwap.contains(line_B)) {
+                System.out.println("Error in strings you inserted \n");
+                System.exit(1);
+            }
+            linesOfFileToSwap.set(linesOfFileToSwap.indexOf(line_B), line_A);
+            linesOfFileToSwap.set(linesOfFileToSwap.indexOf(line_A), line_B);
+            for (int i = 0; i < linesOfFileToSwap.size(); i++)
+                pwForSwapping.write(linesOfFileToSwap.get(i) + '\n');
+            pwForSwapping.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
     }
 
 
