@@ -10,7 +10,5 @@ public class TestTheTasks {
         System.out.println(Arrays.toString(raf.indexOfLinesThatContain(linesOfFile))+'\n'); //task 4
         raf.sortFile(); //task 5
         raf.swapTheLines(); //task 6
-
-
     }
 }

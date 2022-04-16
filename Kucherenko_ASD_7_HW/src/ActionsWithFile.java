@@ -23,8 +23,8 @@ public class ActionsWithFile {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter("files/fileToWriteIn.txt"));
             String line;
-            for (int i = 0; i < linesOfFile.size(); i++) {
-                line = linesOfFile.get(i);
+            for (String s : linesOfFile) {
+                line = s;
                 pw.println(line);
             }
             pw.close();
@@ -78,7 +78,7 @@ public class ActionsWithFile {
             for (int i = 0; i < linesToSort.size(); i++)
                 pwForAsc.write(linesToSort.get(i) + '\n');
             pwForAsc.close();
-            Collections.sort(linesToSort, Collections.reverseOrder());
+            linesToSort.sort(Collections.reverseOrder());
             for (int i = 0; i < linesToSort.size(); i++)
                 pwForDesc.write(linesToSort.get(i) + '\n');
             pwForDesc.close();
