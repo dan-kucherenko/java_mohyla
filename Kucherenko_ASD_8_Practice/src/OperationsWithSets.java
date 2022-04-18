@@ -66,5 +66,36 @@ public class OperationsWithSets {
         set_1 = set_2;
         return set_1;
     }
-    
+
+    Integer min(Integer[] set) { //finish later
+        int min = 0;
+        return min;
+    }
+
+    Integer max(Integer[] set) { //finish later
+        int max = 0;
+        return max;
+    }
+
+    boolean equal(Integer[] set_1, Integer[] set_2) {
+        boolean isEqual = false;
+        if (set_1 == set_2)
+            isEqual = true;
+        return isEqual;
+    }
+
+    String find(Integer x, Integer[] set_1, Integer[] set_2) {
+        String nameOfSet = null;
+        LinkedHashSet<Integer> set1AsAList = new LinkedHashSet<>();
+        set1AsAList.addAll(Arrays.asList(set_1));
+        LinkedHashSet<Integer> set2AsAList = new LinkedHashSet<>();
+        set2AsAList.addAll(Arrays.asList(set_2));
+        if(set1AsAList.contains(x))
+            return "Set_1 contains the decimal you have inserted";
+        else if (set2AsAList.contains(x))
+            return "Set_2 contains the decimal you have inserted";
+        else
+        return "None sets contains the decimal you have inserted";
+    }
+
 }
