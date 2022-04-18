@@ -9,5 +9,11 @@ public class OperationsTest {
         System.out.println("Union: " + ows.union(set_1, set_2, result_set));
         System.out.println("Intersection: " + ows.intersection(set_1, set_2, result_set));
         System.out.println("Difference: " + ows.difference(set_1, set_2, result_set));
+        System.out.println("Merge: " + ows.merge(set_1, set_2, result_set));
+        System.out.println("Member: " + ows.member(2, result_set));
+        System.out.println("Make null: " + ows.makeNull(result_set));
+        System.out.println("Insert: " + ows.insert(3, result_set));
+        System.out.println("Remove: " + ows.remove(4, result_set));
+        System.out.println("Assign: " + ows.assign(set_1, set_2));
     }
 }

@@ -33,4 +33,38 @@ public class OperationsWithSets {
         result.removeAll(Arrays.asList(set_2));
         return result;
     }
+
+    LinkedHashSet<Integer> merge(Integer[] set_1, Integer[] set_2, LinkedHashSet<Integer> result) {
+        if (intersection(set_1, set_2, result) == null)
+            union(set_1, set_2, result);
+        return result;
+    }
+
+    boolean member(Integer x, LinkedHashSet<Integer> result) {
+        boolean hasX = false;
+        if (result.contains(x))
+            hasX = true;
+        return hasX;
+    }
+
+    LinkedHashSet<Integer> makeNull(LinkedHashSet<Integer> set) {
+        set = null;
+        return set;
+    }
+
+    LinkedHashSet<Integer> insert(Integer x, LinkedHashSet<Integer> result) {
+        result.add(x);
+        return result;
+    }
+
+    LinkedHashSet<Integer> remove(Integer x, LinkedHashSet<Integer> result) {
+        result.remove(x);
+        return result;
+    }
+
+    Integer[] assign(Integer[] set_1, Integer[] set_2) {
+        set_1 = set_2;
+        return set_1;
+    }
+    
 }
