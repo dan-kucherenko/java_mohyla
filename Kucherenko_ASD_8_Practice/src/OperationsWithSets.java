@@ -1,3 +1,6 @@
+import javax.sound.sampled.Line;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Random;
 
@@ -32,13 +35,14 @@ public class OperationsWithSets {
 
     }
 
-    LinkedHashSet<Integer> intersection(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
+    LinkedHashSet<Integer> intersection(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2,
+                                        LinkedHashSet<Integer> result) {
         intersection_result = new LinkedHashSet<>();
         intersection_result.addAll(set_1);
         intersection_result.retainAll(set_2);
         if (intersection_result.isEmpty())
-            intersection_result = null;
-        return intersection_result;
+            return null;
+        return result = intersection_result;
     }
 
     LinkedHashSet<Integer> difference(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2,
@@ -58,15 +62,12 @@ public class OperationsWithSets {
     }
 
     boolean member(Integer x, LinkedHashSet<Integer> set) {
-        boolean hasX = false;
-        if (set.contains(x))
-            hasX = true;
-        return hasX;
+        return set.contains(x);
     }
 
-    LinkedHashSet<Integer> makeNull(LinkedHashSet<Integer> set) {
+    String makeNull(LinkedHashSet<Integer> set) {
         set = null;
-        return set;
+        return "Your set is now null";
     }
 
     LinkedHashSet<Integer> insert(Integer x, LinkedHashSet<Integer> set) {
@@ -75,27 +76,50 @@ public class OperationsWithSets {
     }
 
     LinkedHashSet<Integer> remove(Integer x, LinkedHashSet<Integer> set) {
-            set.remove(x);
+        set.remove(x);
         return set;
     }
 
-    LinkedHashSet<Integer> assign(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
+    void assign(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
         set_1 = set_2;
-        return set_1;
+    }
+
+    static class CompareIntegersInSets implements Comparator<Integer> {
+        Integer decimalToCompare;
+        @Override
+        public int compare(Integer decimalToCompare, Integer thatDecimalToCompare) {
+            return decimalToCompare - thatDecimalToCompare;
+        }
     }
 
     Integer min(LinkedHashSet<Integer> set) { //finish later
         int min = 0;
+        CompareIntegersInSets compareIntegers = new CompareIntegersInSets();
+        ArrayList<Integer> setAsAnArrayList = new ArrayList<>(set);
+        for (int i = 0; i < ARRAY_LENGTH; i++) {
+            if (compareIntegers.compare(setAsAnArrayList.get(i), setAsAnArrayList.get(i + 1)) < 0)
+                min = setAsAnArrayList.get(i);
+        }
         return min;
     }
 
     Integer max(LinkedHashSet<Integer> set) { //finish later
         int max = 0;
+        CompareIntegersInSets compareIntegers = new CompareIntegersInSets();
+        ArrayList<Integer> setAsAnArrayList = new ArrayList<>(set);
+        for (int i = 0; i < ARRAY_LENGTH; i++) {
+            if (compareIntegers.compare(setAsAnArrayList.get(i), setAsAnArrayList.get(i + 1)) > 0)
+                max = setAsAnArrayList.get(i);
+        }
         return max;
     }
 
     boolean equal(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
-        return set_1.equals(set_2);
+        LinkedHashSet<Integer> result = new LinkedHashSet<>();
+        boolean isEqual = false;
+        if (difference(set_1, set_2, result).isEmpty())
+            isEqual = true;
+        return isEqual;
     }
 
     String find(Integer x, LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
