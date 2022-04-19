@@ -19,7 +19,7 @@ public class OperationsWithSets {
         for (int i = 0; i < ARRAY_LENGTH; i++) {
             if (booleanSet1[i] == 1)
                 set_1.add(baseArray[i]);
-            else if (booleanSet2[i] == 1)
+            if (booleanSet2[i] == 1)
                 set_2.add(baseArray[i]);
         }
     }
@@ -32,12 +32,13 @@ public class OperationsWithSets {
 
     }
 
-    LinkedHashSet<Integer> intersection(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2,
-                                        LinkedHashSet<Integer> result) {
-        result.clear();
-        result.addAll(set_1);
-        result.retainAll(set_2);
-        return result;
+    LinkedHashSet<Integer> intersection(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
+        intersection_result = new LinkedHashSet<>();
+        intersection_result.addAll(set_1);
+        intersection_result.retainAll(set_2);
+        if (intersection_result.isEmpty())
+            intersection_result = null;
+        return intersection_result;
     }
 
     LinkedHashSet<Integer> difference(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2,
@@ -68,16 +69,13 @@ public class OperationsWithSets {
         return set;
     }
 
-    LinkedHashSet<Integer> insert(Integer x, LinkedHashSet<Integer> result) {
-        result.add(x);
-        return result;
+    LinkedHashSet<Integer> insert(Integer x, LinkedHashSet<Integer> set) {
+        set.add(x);
+        return set;
     }
 
     LinkedHashSet<Integer> remove(Integer x, LinkedHashSet<Integer> set) {
-        if (set.contains(x))
             set.remove(x);
-        else
-            System.out.println("Your set doesn't have the decimal you have inserted");
         return set;
     }
 
@@ -97,7 +95,7 @@ public class OperationsWithSets {
     }
 
     boolean equal(LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
-        return set_1 == set_2;
+        return set_1.equals(set_2);
     }
 
     String find(Integer x, LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
