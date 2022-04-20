@@ -84,32 +84,61 @@ public class OperationsWithSets {
         set_1 = set_2;
     }
 
-    static class CompareIntegersInSets implements Comparator<Integer> {
-        Integer decimalToCompare;
+    class CompareIntegersInSets implements Comparator<Integer> {
         @Override
         public int compare(Integer decimalToCompare, Integer thatDecimalToCompare) {
             return decimalToCompare - thatDecimalToCompare;
         }
     }
 
-    Integer min(LinkedHashSet<Integer> set) { //finish later
-        int min = 0;
+    class CompareCharsInSets implements Comparator<Character> {
+        @Override
+        public int compare(Character thisCh, Character nextCh) {
+            return thisCh - nextCh;
+        }
+    }
+
+
+    Integer minInteger(LinkedHashSet<Integer> set) {
         CompareIntegersInSets compareIntegers = new CompareIntegersInSets();
         ArrayList<Integer> setAsAnArrayList = new ArrayList<>(set);
-        for (int i = 0; i < ARRAY_LENGTH; i++) {
-            if (compareIntegers.compare(setAsAnArrayList.get(i), setAsAnArrayList.get(i + 1)) < 0)
-                min = setAsAnArrayList.get(i);
+        int min = setAsAnArrayList.get(0);
+        for (int i = 0; i < set.size() - 1; i++) {
+            if (compareIntegers.compare(min, setAsAnArrayList.get(i + 1)) > 0)
+                min = setAsAnArrayList.get(i + 1);
         }
         return min;
     }
 
-    Integer max(LinkedHashSet<Integer> set) { //finish later
-        int max = 0;
+    Character minCharacter(LinkedHashSet<Character> set) {
+        CompareCharsInSets compareChars = new CompareCharsInSets();
+        ArrayList<Character> setAsAnArrayList = new ArrayList<>(set);
+        Character min = setAsAnArrayList.get(0);
+        for (int i = 0; i < set.size() - 1; i++) {
+            if (compareChars.compare(min, setAsAnArrayList.get(i + 1)) > 0)
+                min = setAsAnArrayList.get(i + 1);
+        }
+        return min;
+    }
+
+    Integer maxInteger(LinkedHashSet<Integer> set) {
         CompareIntegersInSets compareIntegers = new CompareIntegersInSets();
         ArrayList<Integer> setAsAnArrayList = new ArrayList<>(set);
-        for (int i = 0; i < ARRAY_LENGTH; i++) {
-            if (compareIntegers.compare(setAsAnArrayList.get(i), setAsAnArrayList.get(i + 1)) > 0)
-                max = setAsAnArrayList.get(i);
+        int max = setAsAnArrayList.get(0);
+        for (int i = 0; i < set.size() - 1; i++) {
+            if (compareIntegers.compare(max, setAsAnArrayList.get(i + 1)) < 0)
+                max = setAsAnArrayList.get(i + 1);
+        }
+        return max;
+    }
+
+    Character maxCharacter(LinkedHashSet<Character> set) {
+        CompareCharsInSets compareChars = new CompareCharsInSets();
+        ArrayList<Character> setAsAnArrayList = new ArrayList<>(set);
+        Character max = setAsAnArrayList.get(0);
+        for (int i = 0; i < set.size() - 1; i++) {
+            if (compareChars.compare(max, setAsAnArrayList.get(i + 1)) < 0)
+                max = setAsAnArrayList.get(i + 1);
         }
         return max;
     }
@@ -123,7 +152,7 @@ public class OperationsWithSets {
     }
 
     String find(Integer x, LinkedHashSet<Integer> set_1, LinkedHashSet<Integer> set_2) {
-        if (intersection_result != null) {
+        if (intersection_result == null) {
             if (set_1.contains(x))
                 return "Set_1 contains the decimal you have inserted";
             else if (set_2.contains(x))
