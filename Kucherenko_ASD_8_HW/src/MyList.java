@@ -36,21 +36,17 @@ public class MyList<T extends Number> {
     public void remove(T data) {
         Node currentNode = head;
         Node prevNode = null;
-        Node tail = null;
         while (currentNode != null) {
             if (currentNode.data == data) {
                 if (currentNode == head)
                     head = currentNode.next;
                 else
                     prevNode.next = currentNode.next;
+                length--;
             }
             prevNode = currentNode;
             currentNode = currentNode.next;
-            tail = currentNode.next.next;
-            if(tail == null)
-
         }
-        length--;
     }
 
     public boolean find(T data) {
@@ -65,11 +61,10 @@ public class MyList<T extends Number> {
     }
 
     public String toString() {
-        Node currentNode = head;
         Object[] elements = new Object[length];
         int iterator = 0;
         for (Node node = head; node != null; node = node.next)
-            elements[iterator++] = node.data;
+                elements[iterator++] = node.data;
         return "Your list is: " + Arrays.toString(elements);
     }
 }
