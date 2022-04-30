@@ -6,8 +6,8 @@ public class Test {
         myList1.add(4);
         MyList<Integer> myList2 = new MyList<>();
 //        myList2.add(2);
-        myList2.add(5);
         myList2.add(6);
+        myList2.add(5);
         myList2.add(9);
         myList2.add(8);
         MyList<Integer> result = new MyList<>();
@@ -25,6 +25,8 @@ public class Test {
         resultSet.insert(5, mySet1);
         resultSet.delete(8, mySet2);
         System.out.println("Assign: " + resultSet.assign(mySet1, mySet2));
+        System.out.println("Min: " + resultSet.min(mySet2));
+        System.out.println("Max: " + resultSet.max(mySet2));
         System.out.println("Equal: "+ resultSet.equal(mySet1,mySet2));
         System.out.println("Find: "+ resultSet.find(4,mySet1,mySet2));
 
