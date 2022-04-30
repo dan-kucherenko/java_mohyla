@@ -11,8 +11,10 @@ public class Test {
         myList2.add(9);
         myList2.add(8);
         MyList<Integer> result = new MyList<>();
-        MySet<Integer> mySet = new MySet<>(myList1, myList2);
-        System.out.println("Union: " + (mySet.union(myList1, myList2,result)).toString());
+        MySet<Integer> mySet1 = new MySet<>(myList1);
+        MySet<Integer> mySet2 = new MySet<>(myList2);
+        MySet<Integer> resultSet = new MySet<>(result);
+        System.out.println(resultSet.union(mySet1, mySet2, resultSet));
 
 
     }

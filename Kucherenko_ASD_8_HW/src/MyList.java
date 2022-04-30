@@ -23,6 +23,7 @@ public class MyList<T extends Number & Comparable<T>> {
         Node currentNode = head;
         if (head == null) {
             head = newNode;
+            length++;
         } else {
             while (currentNode.next != null)
                 currentNode = currentNode.next;
@@ -46,12 +47,13 @@ public class MyList<T extends Number & Comparable<T>> {
             prevNode = currentNode;
             currentNode = currentNode.next;
         }
+
     }
 
     public boolean find(T data) {
         boolean isExists = false;
         for (Node i = head; i != null; i = i.next) {
-            if (data.equals(i)) {
+            if (data == i.data) {
                 isExists = true;
                 break;
             }
@@ -61,7 +63,7 @@ public class MyList<T extends Number & Comparable<T>> {
 
     public String toString() {
         Node currentNode = head;
-        String listAsString = "Your list is: [ ";
+        String listAsString = "Your list is: [";
         if (head == null) {
             return "List is empty";
         } else {
@@ -73,10 +75,20 @@ public class MyList<T extends Number & Comparable<T>> {
         return listAsString + ']';
     }
 
-    public void push(T new_data) {
-        Node new_node = new Node(new_data);
-        new_node.next = head;
-        head = new_node;
+    public T get(int index) {
+        Node currentNode = head;
+        int count = 0;
+        T numToFind = null;
+        while (currentNode != null) {
+            if (count == index) {
+                numToFind = currentNode.data;
+                return numToFind;
+            }
+            count++;
+            currentNode = currentNode.next;
+        }
+        assert (false);
+        return numToFind;
     }
 
     public void sort() {
