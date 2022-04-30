@@ -38,13 +38,21 @@ public class MySet<T extends Number> {
     }
 
     public MySet difference(MySet set1, MySet set2, MySet result) {
-        result.list.clear();
         int i = 0;
         while (set1.list.get(i) != null) {
             if (!set2.list.find(set1.list.get(i)))
                 result.push(set1.list.get(i));
             i++;
         }
+        return result;
+    }
+
+    public MySet merge(MySet set1, MySet set2, MySet result) {
+        MySet intersectionResult = intersection(set1, set2, result);
+        if (intersectionResult.list.length == 0)
+            union(set1, set2, result);
+        else
+            return null;
         return result;
     }
 
