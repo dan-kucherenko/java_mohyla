@@ -7,10 +7,6 @@ public class MySet<T extends Number> {
         this.length = list.length;
     }
 
-    public MySet() {
-
-    }
-
 //    public void addIfNotExist(T data, MyList list) {
 //        if (list.find(data)) {
 //            return;
@@ -33,21 +29,38 @@ public class MySet<T extends Number> {
     }
 
     public MySet intersection(MySet set1, MySet set2, MySet result) {
-
+        result.list.clear();
+        for (int i = 0; i < set1.length; i++) {
+            if (set1.list.find(set2.list.get(i)))
+                result.push(set2.list.get(i));
+        }
         return result;
     }
+
+    public MySet difference(MySet set1, MySet set2, MySet result) {
+        result.list.clear();
+        int i = 0;
+        while (set1.list.get(i) != null) {
+            if (!set2.list.find(set1.list.get(i)))
+                result.push(set1.list.get(i));
+            i++;
+        }
+        return result;
+    }
+
     private void push(T newData) {
         list.add(newData);
     }
 
     public String toString() {
         String listAsString = "Your list is: [ ";
-        for (int i = 0; i < list.length; i++) {
-            if (list.get(0) == null)
-                return "Your set is empty";
-            else
+        if (list.get(0) == null)
+            return "Your set is empty";
+        else {
+            list.sort();
+            for (int i = 0; i < list.length; i++)
                 listAsString += list.get(i) + " ";
+            return listAsString + ']';
         }
-        return listAsString + ']';
     }
 }
