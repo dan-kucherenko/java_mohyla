@@ -14,7 +14,9 @@ public class Test {
         MySet<Integer> mySet1 = new MySet<>(myList1);
         MySet<Integer> mySet2 = new MySet<>(myList2);
         MySet<Integer> resultSet = new MySet<>(result);
-        System.out.println(resultSet.union(mySet1, mySet2, resultSet));
+        System.out.println((resultSet.union(mySet1, mySet2, resultSet).toString()));
+        System.out.println((resultSet.intersection(mySet1, mySet2, resultSet).toString()));
+        System.out.println((resultSet.difference(mySet1, mySet2, resultSet).toString()));
 
 
     }

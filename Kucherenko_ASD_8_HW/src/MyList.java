@@ -61,9 +61,16 @@ public class MyList<T extends Number & Comparable<T>> {
         return isExists;
     }
 
+    public void clear() {
+        for (Node i = head; i != null; i = i.next) {
+            remove(i.data);
+        }
+    }
+
     public String toString() {
         Node currentNode = head;
         String listAsString = "Your list is: [";
+        sort();
         if (head == null) {
             return "List is empty";
         } else {
