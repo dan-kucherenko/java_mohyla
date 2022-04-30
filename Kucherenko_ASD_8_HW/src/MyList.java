@@ -1,11 +1,9 @@
 public class MyList<T extends Number & Comparable<T>> {
-    public Node head;
-    public Node tail;
+    private Node head;
     public int length;
 
     public MyList() {
         head = null;
-        tail = null;
     }
 
     class Node {

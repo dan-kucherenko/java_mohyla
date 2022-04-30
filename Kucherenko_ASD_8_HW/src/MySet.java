@@ -1,12 +1,13 @@
 import java.util.Comparator;
 
 public class MySet<T extends Number> {
-    public MyList list;
+    private MyList list;
     int length;
-    MySet intersectionResult;
+    private MyList intersectionList;
+    private MySet intersectionResult;
 
-    public MySet(MyList list) {
-        this.list = list;
+    public MySet(MyList listToUse) {
+        this.list = listToUse;
         this.length = list.length;
     }
 
@@ -26,27 +27,34 @@ public class MySet<T extends Number> {
 
     public MySet intersection(MySet<Integer> set1, MySet<Integer> set2, MySet result) {
         result.list.clear();
+        intersectionList = new MyList();
+        intersectionResult = new MySet(intersectionList);
         for (int i = 0; i < set1.length; i++) {
             if (set1.list.find(set2.list.get(i)))
-                result.push(set2.list.get(i));
+                intersectionResult.push(set2.list.get(i));
         }
-        intersectionResult = result;
-        return result;
+        if (intersectionResult.list.length == 0)
+            return intersectionResult = null;
+        return result = intersectionResult;
     }
 
     public MySet difference(MySet<Integer> set1, MySet<Integer> set2, MySet result) {
         int i = 0;
         while (set1.list.get(i) != null) {
-            if (!set2.list.find(set1.list.get(i)))
-                result.push(set1.list.get(i));
+            result.push(set1.list.get(i));
             i++;
+        }
+        int j = 0;
+        while (set2.list.get(j) != null) {
+            result.list.remove(set2.list.get(j));
+            j++;
         }
         return result;
     }
 
     public MySet merge(MySet<Integer> set1, MySet<Integer> set2, MySet result) {
-
-        if (intersectionResult.list.length == 0)
+        result.list.clear();
+        if (intersectionResult == null)
             union(set1, set2, result);
         else
             return null;
@@ -100,7 +108,7 @@ public class MySet<T extends Number> {
         }
     }
 
-    T min(MySet set) {
+    public T min(MySet set) {
         CompareGenericsInSets compareIntegers = new CompareGenericsInSets();
         T min = (T) set.list.get(0);
         for (int i = 0; i < set.list.length - 1; i++) {
@@ -110,7 +118,7 @@ public class MySet<T extends Number> {
         return min;
     }
 
-    T max(MySet set) {
+    public T max(MySet set) {
         CompareGenericsInSets compareIntegers = new CompareGenericsInSets();
         T max = (T) set.list.get(0);
         for (int i = 0; i < set.list.length - 1; i++) {
@@ -120,8 +128,8 @@ public class MySet<T extends Number> {
         return max;
     }
 
-    String find(T x, MySet<Integer> set1, MySet<Integer> set2) {
-        if (intersectionResult.list.length == 0) {
+    public String find(T x, MySet<Integer> set1, MySet<Integer> set2) {
+        if (intersectionResult == null) {
             if (set1.list.find(x))
                 return "Set_1 contains the decimal you have inserted";
             else if (set2.list.find(x))
@@ -137,7 +145,7 @@ public class MySet<T extends Number> {
     }
 
     public String toString() {
-        String listAsString = "Your list is: [ ";
+        String listAsString = "[ ";
         if (list.get(0) == null)
             return "Your set is empty";
         else {
