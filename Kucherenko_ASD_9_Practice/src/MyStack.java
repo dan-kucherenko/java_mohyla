@@ -38,38 +38,50 @@ public class MyStack<T extends Number> {
     public T pop() {
         Node poppedElement = null;
         Node currentNode = bottom;
+        int exceptions = 0;
         try {
-            if (size == 0)
+            if (size == 0) {
+                exceptions++;
                 throw new EmptyStackException();
+            }
         } catch (EmptyStackException e) {
             e.printStackTrace();
         }
-        Node prevNode = null;
-        while (currentNode.next != null) {
-            prevNode = currentNode;
-            currentNode = currentNode.next;
-        }
-        peek = prevNode;
-        poppedElement = currentNode;
-        peek.next = currentNode.next;
-        size--;
+        if (exceptions == 0) {
+            Node prevNode = null;
+            while (currentNode.next != null) {
+                prevNode = currentNode;
+                currentNode = currentNode.next;
+            }
+            peek = prevNode;
+            poppedElement = currentNode;
+            peek.next = currentNode.next;
+            size--;
 
-        return poppedElement.item;
+            return poppedElement.item;
+        }
+        return null;
     }
 
     public T peek() {
+        int exceptions = 0;
         Node currentNode = null;
         try {
-            if (size == 0)
+            if (size == 0) {
+                exceptions++;
                 throw new EmptyStackException();
+            }
         } catch (EmptyStackException e) {
             e.printStackTrace();
         }
-        while (currentNode.next != null) {
-            currentNode = currentNode.next;
-            peek = currentNode;
+        if (exceptions == 0) {
+            while (currentNode.next != null) {
+                currentNode = currentNode.next;
+                peek = currentNode;
+            }
+            return peek.item;
         }
-        return peek.item;
+        return null;
     }
 
     public boolean empty() {
@@ -78,7 +90,6 @@ public class MyStack<T extends Number> {
             isEmpty = true;
         return isEmpty;
     }
-
 
     public int search(T element) {
         int indexOfElement = 1;
