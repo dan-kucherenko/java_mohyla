@@ -1,11 +1,11 @@
 import java.util.EmptyStackException;
 
-public class Stack<T extends Number> {
+public class MyStack<T extends Number> {
     private Node peek;
     private Node bottom;
     public int size;
 
-    public Stack() {
+    public MyStack() {
         peek = null;
         bottom = null;
     }
@@ -35,12 +35,16 @@ public class Stack<T extends Number> {
         return item;
     }
 
-    public T pop() throws EmptyStackException {
-        Node currentNode = bottom;
+    public T pop() {
         Node poppedElement = null;
+        Node currentNode = bottom;
+        try {
+            if (size == 0)
+                throw new EmptyStackException();
+        } catch (EmptyStackException e) {
+            e.printStackTrace();
+        }
         Node prevNode = null;
-        if (size == 0)
-            throw new EmptyStackException();
         while (currentNode.next != null) {
             prevNode = currentNode;
             currentNode = currentNode.next;
@@ -53,15 +57,17 @@ public class Stack<T extends Number> {
         return poppedElement.item;
     }
 
-    public T peek() throws EmptyStackException {
-        Node currentNode = bottom;
-        if (size == 0)
-            throw new EmptyStackException();
-        else {
-            while (currentNode.next != null) {
-                currentNode = currentNode.next;
-                peek = currentNode;
-            }
+    public T peek() {
+        Node currentNode = null;
+        try {
+            if (size == 0)
+                throw new EmptyStackException();
+        } catch (EmptyStackException e) {
+            e.printStackTrace();
+        }
+        while (currentNode.next != null) {
+            currentNode = currentNode.next;
+            peek = currentNode;
         }
         return peek.item;
     }
@@ -73,20 +79,19 @@ public class Stack<T extends Number> {
         return isEmpty;
     }
 
+
     public int search(T element) {
-        int indexOfElement = 0;
+        int indexOfElement = 1;
         Node currentNode = bottom;
         while (currentNode != null) {
             if ((currentNode.item).equals(element))
                 return indexOfElement;
-            if (currentNode.item != element)
-               return -1;
             if (bottom.item.equals(element))
                 return 1;
             currentNode = currentNode.next;
             indexOfElement++;
         }
-        return indexOfElement;
+        return -1;
     }
 
     public String toString() {
