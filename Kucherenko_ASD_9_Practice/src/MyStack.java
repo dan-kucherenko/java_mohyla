@@ -36,7 +36,7 @@ public class MyStack<T extends Number> {
     }
 
     public T pop() {
-        Node poppedElement = null;
+        Node poppedElement;
         Node currentNode = bottom;
         int exceptions = 0;
         try {
@@ -117,6 +117,5 @@ public class MyStack<T extends Number> {
             }
         }
         return stackOutput + ']';
-
     }
 }
