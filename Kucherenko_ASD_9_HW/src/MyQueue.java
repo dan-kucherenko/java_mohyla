@@ -1,21 +1,18 @@
 import java.util.NoSuchElementException;
 
 public class MyQueue<T> {
-    private Node peek;
     private Node head;
     private int maxSize;
     private int size;
     private boolean areNullElementsAllowed;
 
     public MyQueue() {
-        peek = null;
         head = null;
     }
 
     public MyQueue(int maxSize, boolean areNullElementsAllowed) {
         this.maxSize = maxSize;
         this.areNullElementsAllowed = areNullElementsAllowed;
-        peek = null;
         head = null;
     }
 
@@ -164,6 +161,29 @@ public class MyQueue<T> {
         if (size == 0)
             isEmpty = true;
         return isEmpty;
+    }
+
+    public int search(T item) {
+        int indexOfElement = 1;
+        Node currentNode = head;
+        while (currentNode != null) {
+            if (item == null) {
+                if (currentNode.item == null)
+                    return indexOfElement;
+                if (head.item == null)
+                    return 1;
+                currentNode = currentNode.next;
+                indexOfElement++;
+            } else {
+                if (currentNode.equals(item))
+                    return indexOfElement;
+                if (head.equals(item))
+                    return 1;
+                currentNode = currentNode.next;
+                indexOfElement++;
+            }
+        }
+        return -1;
     }
 
     public String toString() {
