@@ -159,6 +159,13 @@ public class MyQueue<T> {
         return headOfQueue;
     }
 
+    public boolean empty() {
+        boolean isEmpty = false;
+        if (size == 0)
+            isEmpty = true;
+        return isEmpty;
+    }
+
     public String toString() {
         String queueOutput = "Your queue is: [ ";
         Node currentNode = head;

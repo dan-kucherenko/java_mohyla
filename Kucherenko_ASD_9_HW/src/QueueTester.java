@@ -13,6 +13,7 @@ public class QueueTester {
 //        System.out.println("Removed head: " + myQueue.remove());
         System.out.println(myQueue);
         System.out.println("Peek of queue is: " + myQueue.peek());
+        System.out.println("Queue is empty: " + myQueue.empty());
 
     }
 
