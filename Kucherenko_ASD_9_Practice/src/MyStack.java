@@ -75,7 +75,7 @@ public class MyStack<T extends Number> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            while (currentNode.next != null) {
+            while (currentNode != null) {
                 currentNode = currentNode.next;
                 peek = currentNode;
             }
