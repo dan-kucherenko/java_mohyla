@@ -79,9 +79,42 @@ public class MyQueue<T> {
             noSuchElementException.printStackTrace();
         }
         if (exceptions == 0) {
-             element= head.item;
+            element = head.item;
         }
         return element;
+    }
+
+    public boolean offer(T item) {
+        boolean isOffered = false;
+        Node newNode = new Node(item);
+        Node currentNode = head;
+        int exceptions = 0;
+        if (size >= maxSize)
+            return false;
+        else {
+            try {
+                if (item == null && !areNullElementsAllowed) {
+                    exceptions++;
+                    throw new NullPointerException();
+                }
+            } catch (NullPointerException nullPointerException) {
+                nullPointerException.printStackTrace();
+            }
+            if (exceptions == 0) {
+                if (head == null) {
+                    head = newNode;
+                    isOffered = true;
+                    size++;
+                } else {
+                    while (currentNode.next != null)
+                        currentNode = currentNode.next;
+                    currentNode.next = newNode;
+                    isOffered = true;
+                    size++;
+                }
+            }
+        }
+        return isOffered;
     }
 
     public String toString() {
