@@ -117,6 +117,19 @@ public class MyQueue<T> {
         return isOffered;
     }
 
+    public T poll() {
+        T queueHead = head.item;
+        if (size == 0)
+            return null;
+        else {
+            Node newHead = head.next;
+            head = null;
+            head = newHead;
+            size--;
+        }
+        return queueHead;
+    }
+
     public String toString() {
         String queueOutput = "Your queue is: [ ";
         Node currentNode = head;

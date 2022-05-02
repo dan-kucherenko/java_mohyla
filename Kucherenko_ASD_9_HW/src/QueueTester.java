@@ -7,6 +7,9 @@ public class QueueTester {
         myQueue.offer(6);
         System.out.println("Your head of queue is: " + myQueue.element());
         System.out.println(myQueue);
+        System.out.println("Removed head: " + myQueue.poll());
+        System.out.println(myQueue);
+        System.out.println("Your head of queue is: " + myQueue.element());
     }
 
 }
