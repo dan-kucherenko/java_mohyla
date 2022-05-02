@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class MyQueue<T> {
     private Node peek;
     private Node head;
@@ -62,6 +64,24 @@ public class MyQueue<T> {
             }
         }
         return elementAdded;
+    }
+
+    public T element() {
+        int exceptions = 0;
+        T element = null;
+        try {
+            if (head == null) {
+                exceptions++;
+                throw new NoSuchElementException();
+
+            }
+        } catch (NoSuchElementException noSuchElementException) {
+            noSuchElementException.printStackTrace();
+        }
+        if (exceptions == 0) {
+             element= head.item;
+        }
+        return element;
     }
 
     public String toString() {
