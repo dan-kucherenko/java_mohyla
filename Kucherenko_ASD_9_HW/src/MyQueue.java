@@ -73,14 +73,12 @@ public class MyQueue<T> {
             if (head == null) {
                 exceptions++;
                 throw new NoSuchElementException();
-
             }
         } catch (NoSuchElementException noSuchElementException) {
             noSuchElementException.printStackTrace();
         }
-        if (exceptions == 0) {
+        if (exceptions == 0)
             element = head.item;
-        }
         return element;
     }
 
@@ -118,16 +116,39 @@ public class MyQueue<T> {
     }
 
     public T poll() {
-        T queueHead = head.item;
+        T queueHead;
         if (size == 0)
             return null;
         else {
+            queueHead = head.item;
             Node newHead = head.next;
             head = null;
             head = newHead;
             size--;
         }
         return queueHead;
+    }
+
+    public T remove() {
+        T queueHead = null;
+        int exception = 0;
+        try {
+            if (size == 0) {
+                exception++;
+                throw new NoSuchElementException();
+            }
+        } catch (NoSuchElementException noSuchElementException) {
+            noSuchElementException.printStackTrace();
+        }
+        if (exception == 0) {
+            queueHead = head.item;
+            Node newHead = head.next;
+            head = null;
+            head = newHead;
+            size--;
+        }
+        return queueHead;
+
     }
 
     public String toString() {
