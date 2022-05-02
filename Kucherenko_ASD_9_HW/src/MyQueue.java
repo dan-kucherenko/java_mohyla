@@ -31,29 +31,51 @@ public class MyQueue<T> {
         boolean elementAdded = false;
         Node newNode = new Node(item);
         Node currentNode = head;
+        int exceptions = 0;
         try {
-            if (item == null && !areNullElementsAllowed)
+            if (item == null && !areNullElementsAllowed) {
+                exceptions++;
                 throw new NullPointerException();
+            }
         } catch (NullPointerException nullPointerException) {
             nullPointerException.printStackTrace();
         }
         try {
-            if (size > maxSize)
+            if (size >= maxSize) {
+                exceptions++;
                 throw new IllegalStateException();
+            }
         } catch (IllegalStateException illegalStateException) {
             illegalStateException.printStackTrace();
         }
-        if (head == null) {
-            head = newNode;
-            size++;
-        }
-        else {
-            while (currentNode.next != null)
-                currentNode = currentNode.next;
-            currentNode.next = newNode;
-            size++;
+        if (exceptions == 0) {
+            if (head == null) {
+                head = newNode;
+                elementAdded = true;
+                size++;
+            } else {
+                while (currentNode.next != null)
+                    currentNode = currentNode.next;
+                currentNode.next = newNode;
+                elementAdded = true;
+                size++;
+            }
         }
         return elementAdded;
+    }
+
+    public String toString() {
+        String queueOutput = "Your queue is: [ ";
+        Node currentNode = head;
+        if (head == null) {
+            return "Queue is empty";
+        } else {
+            while (currentNode != null) {
+                queueOutput += currentNode.item + " ";
+                currentNode = currentNode.next;
+            }
+        }
+        return queueOutput + ']';
     }
 
 }
