@@ -148,7 +148,15 @@ public class MyQueue<T> {
             size--;
         }
         return queueHead;
+    }
 
+    public T peek() {
+        T headOfQueue;
+        if (size == 0)
+            return null;
+        else
+            headOfQueue = head.item;
+        return headOfQueue;
     }
 
     public String toString() {
