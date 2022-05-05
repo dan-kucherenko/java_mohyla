@@ -1,6 +1,4 @@
-import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Sorter {
     public static void mergeSort(int[] arr) {
@@ -243,7 +241,8 @@ public class Sorter {
     }
 
     public static void quickSortGeneralWithDijkstra(int[] array) {
-        quickSortWithDijkstra(array, 0, array.length - 1);
+        quickSortWithDijkstra(array, 0,
+                array.length - 1);
     }
 
     private static void quickSortWithTwoModifications(int[] arr, int lowIndex, int highIndex) {
