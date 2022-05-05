@@ -8,103 +8,141 @@ public class CreateAndCalculate {
     private final PrintWriter printWriter = TimeTester.printWriter;
     private Stopwatch sw = new Stopwatch();
 
-    private void calculateTimeForMergeSorting() {
-        printWriter.print("Merge sort: ");
-        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-            sw.startTime();
-            Sorter.mergeSort(arrayList.get(i));
-            res = sw.elapsedTime();
-            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
-        }
-        printWriter.print('\n');
+    public interface CalculateTimeForAlgorithms {
+        void calculateTime();
     }
 
-    private void calculateTimeForMergeWithInsertionSorting() {
-        printWriter.print("Merge sort with insertion sorting: ");
-        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-            sw.startTime();
-            Sorter.mergeSortWithInsertion(arrayList.get(i));
-            res = sw.elapsedTime();
-            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+    class TimeForMergeSorting implements CalculateTimeForAlgorithms {
+        @Override
+        public void calculateTime() {
+            printWriter.print("Merge sort: ");
+            for (int i = 0; i < ARRAY_LENGTH.length; i++) {
+                sw.startTime();
+                Sorter.mergeSort(arrayList.get(i));
+                res = sw.elapsedTime();
+                printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+            }
+            printWriter.print('\n');
         }
-        printWriter.print('\n');
     }
 
-    private void calculateTimeForMergeWithComparingSorting() {
-        printWriter.print("Merge sort with comparing sorting: ");
-        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-            sw.startTime();
-            Sorter.mergeSortWithComparing(arrayList.get(i));
-            res = sw.elapsedTime();
-            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+    class TimeForMergeSortingWithInsertion implements CalculateTimeForAlgorithms {
+        @Override
+        public void calculateTime() {
+            printWriter.print("Merge sort with insertion sorting: ");
+            for (int i = 0; i < ARRAY_LENGTH.length; i++) {
+                sw.startTime();
+                Sorter.mergeSortWithInsertion(arrayList.get(i));
+                res = sw.elapsedTime();
+                printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+            }
+            printWriter.print('\n');
         }
-        printWriter.print('\n');
     }
 
-    private void calculateTimeForMergeWithTwoModifications() {
-        printWriter.print("Merge sort with 2 modifications: ");
-        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-            sw.startTime();
-            Sorter.mergeSortWithTwoModifications(arrayList.get(i));
-            res = sw.elapsedTime();
-            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+
+    class TimeForMergeSortingWithComparing implements CalculateTimeForAlgorithms {
+        @Override
+        public void calculateTime() {
+            printWriter.print("Merge sort with comparing sorting: ");
+            for (int i = 0; i < ARRAY_LENGTH.length; i++) {
+                sw.startTime();
+                Sorter.mergeSortWithComparing(arrayList.get(i));
+                res = sw.elapsedTime();
+                printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+            }
+            printWriter.print('\n');
         }
-        printWriter.print('\n');
     }
 
-    private void calculateTimeForQuickSorting() {
-        printWriter.print("Quick sort: ");
-        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-            sw.startTime();
-            Sorter.quickSortGeneral(arrayList.get(i));
-            res = sw.elapsedTime();
-            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+    class TimeForMergeWithTwoModifications implements CalculateTimeForAlgorithms {
+        @Override
+        public void calculateTime() {
+            printWriter.print("Merge sort with 2 modifications: ");
+            for (int i = 0; i < ARRAY_LENGTH.length; i++) {
+                sw.startTime();
+                Sorter.mergeSortWithTwoModifications(arrayList.get(i));
+                res = sw.elapsedTime();
+                printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+            }
+            printWriter.print('\n');
         }
-        printWriter.print('\n');
     }
 
-    private void calculateTimeForQuickWithInsertionSorting() {
-        printWriter.print("Quick sort with insertion sorting: ");
-        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-            sw.startTime();
-            Sorter.quickSortGeneralWithInsertion(arrayList.get(i));
-            res = sw.elapsedTime();
-            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+    class TimeForQuickSorting implements CalculateTimeForAlgorithms {
+        @Override
+        public void calculateTime() {
+            printWriter.print("Quick sort: ");
+            for (int i = 0; i < ARRAY_LENGTH.length; i++) {
+                sw.startTime();
+                Sorter.quickSortGeneral(arrayList.get(i));
+                res = sw.elapsedTime();
+                printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+            }
+            printWriter.print('\n');
         }
-        printWriter.print('\n');
     }
 
-    private void calculateTimeForQuickWithDijkstraSorting() {
-        printWriter.print("Quick sort with Dijkstra sorting: ");
-        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-            sw.startTime();
-            Sorter.quickSortGeneralWithDijkstra(arrayList.get(i));
-            res = sw.elapsedTime();
-            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+    class TimeForQuickWithInsertionSorting implements CalculateTimeForAlgorithms {
+        @Override
+        public void calculateTime() {
+            printWriter.print("Quick sort with insertion sorting: ");
+            for (int i = 0; i < ARRAY_LENGTH.length; i++) {
+                sw.startTime();
+                Sorter.quickSortGeneralWithInsertion(arrayList.get(i));
+                res = sw.elapsedTime();
+                printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+            }
+            printWriter.print('\n');
         }
-        printWriter.print('\n');
     }
 
-    private void calculateTImeForQuickWithTwoModifications() {
-        printWriter.print("Quick sort with 2 modifications: ");
-        for (int i = 0; i < ARRAY_LENGTH.length; i++) {
-            sw.startTime();
-            Sorter.quickSortGeneralWithTwoModifications(arrayList.get(i));
-            res = sw.elapsedTime();
-            printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+    class TimeForQuickWithDijkstraSorting implements CalculateTimeForAlgorithms {
+        @Override
+        public void calculateTime() {
+            printWriter.print("Quick sort with Dijkstra sorting: ");
+            for (int i = 0; i < ARRAY_LENGTH.length; i++) {
+                sw.startTime();
+                Sorter.quickSortGeneralWithDijkstra(arrayList.get(i));
+                res = sw.elapsedTime();
+                printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+            }
+            printWriter.print('\n');
         }
-        printWriter.print('\n');
+    }
+
+    class TimeForQuickWithTwoModifications implements CalculateTimeForAlgorithms {
+        @Override
+        public void calculateTime() {
+            printWriter.print("Quick sort with 2 modifications: ");
+            for (int i = 0; i < ARRAY_LENGTH.length; i++) {
+                sw.startTime();
+                Sorter.quickSortGeneralWithTwoModifications(arrayList.get(i));
+                res = sw.elapsedTime();
+                printWriter.print("{" + ARRAY_LENGTH[i] + "=" + res + "} ");
+            }
+            printWriter.print('\n');
+        }
     }
 
     public void calculateTimeForAllAlgorithms() {
-        calculateTimeForMergeSorting();
-        calculateTimeForMergeWithInsertionSorting();
-        calculateTimeForMergeWithComparingSorting();
-        calculateTimeForMergeWithTwoModifications();
-        calculateTimeForQuickSorting();
-        calculateTimeForQuickWithInsertionSorting();
-        calculateTimeForQuickWithDijkstraSorting();
-        calculateTImeForQuickWithTwoModifications();
+        TimeForMergeSorting timeForMergeSorting = new TimeForMergeSorting();
+        timeForMergeSorting.calculateTime();
+        TimeForMergeSortingWithInsertion timeForMergeSortingWithInsertion = new TimeForMergeSortingWithInsertion();
+        timeForMergeSortingWithInsertion.calculateTime();
+        TimeForMergeSortingWithComparing timeForMergeSortingWithComparing = new TimeForMergeSortingWithComparing();
+        timeForMergeSortingWithComparing.calculateTime();
+        TimeForMergeWithTwoModifications timeForMergeWithTwoModifications = new TimeForMergeWithTwoModifications();
+        timeForMergeWithTwoModifications.calculateTime();
+
+        TimeForQuickSorting timeForQuickSorting = new TimeForQuickSorting();
+        timeForQuickSorting.calculateTime();
+        TimeForQuickWithInsertionSorting timeForQuickWithInsertionSorting = new TimeForQuickWithInsertionSorting();
+        timeForQuickWithInsertionSorting.calculateTime();
+        TimeForQuickWithDijkstraSorting timeForQuickWithDijkstraSorting = new TimeForQuickWithDijkstraSorting();
+        timeForQuickWithDijkstraSorting.calculateTime();
+        TimeForQuickWithTwoModifications timeForQuickWithTwoModifications = new TimeForQuickWithTwoModifications();
+        timeForQuickWithTwoModifications.calculateTime();
     }
 
     protected void createRandomArrays() {
