@@ -80,7 +80,7 @@ public class Sorter {
         }
     }
 
-    public static void mergeSortWithComparing(int[] arr) {
+    public static void mergeSortWithComparing(int[] arr) { //ERROR!!!!!!!!
         int length = arr.length;
         if (length < 2)
             return;
@@ -175,9 +175,7 @@ public class Sorter {
             return;
         int pivotIndex = new Random().nextInt(highIndex - lowIndex) + lowIndex;
         int pivot = arr[pivotIndex];
-        int temp3 = arr[pivotIndex];
-        arr[pivotIndex] = arr[highIndex];
-        arr[highIndex] = temp3;
+        swapElementsThroughIndex(arr, pivotIndex, highIndex);
 
         int leftPointer = lowIndex, rightPointer = highIndex;
         while (leftPointer < rightPointer) {
@@ -185,13 +183,9 @@ public class Sorter {
                 leftPointer++;
             while (arr[rightPointer] >= pivot && rightPointer > leftPointer)
                 rightPointer--;
-            int temp = arr[leftPointer];
-            arr[leftPointer] = arr[rightPointer];
-            arr[rightPointer] = temp;
+            swapElementsThroughIndex(arr, leftPointer, rightPointer);
         }
-        int temp2 = arr[leftPointer];
-        arr[leftPointer] = arr[highIndex];
-        arr[highIndex] = temp2;
+        swapElementsThroughIndex(arr, leftPointer, highIndex);
 
         quickSort(arr, lowIndex, leftPointer - 1);
         quickSort(arr, leftPointer + 1, highIndex);
@@ -206,9 +200,7 @@ public class Sorter {
             return;
         int pivotIndex = new Random().nextInt(highIndex - lowIndex) + lowIndex;
         int pivot = arr[pivotIndex];
-        int temp3 = arr[pivotIndex];
-        arr[pivotIndex] = arr[highIndex];
-        arr[highIndex] = temp3;
+        swapElementsThroughIndex(arr, pivotIndex, highIndex);
 
         int leftPointer = lowIndex, rightPointer = highIndex;
         while (leftPointer < rightPointer) {
@@ -220,13 +212,9 @@ public class Sorter {
                     leftPointer++;
                 while (arr[rightPointer] >= pivot && rightPointer > leftPointer)
                     rightPointer--;
-                int temp = arr[leftPointer];
-                arr[leftPointer] = arr[rightPointer];
-                arr[rightPointer] = temp;
+                swapElementsThroughIndex(arr, leftPointer, rightPointer);
             }
-            int temp2 = arr[leftPointer];
-            arr[leftPointer] = arr[highIndex];
-            arr[highIndex] = temp2;
+            swapElementsThroughIndex(arr, leftPointer, highIndex);
 
             quickSortWithInsertion(arr, lowIndex, leftPointer - 1);
             quickSortWithInsertion(arr, leftPointer + 1, highIndex);
@@ -238,6 +226,32 @@ public class Sorter {
     }
 
     private static void quickSortWithDijkstra(int[] arr, int lowIndex, int highIndex) {
+        if (highIndex <= lowIndex)
+            return;
+        int partitionElement = arr[lowIndex];
+        int lesserThan = lowIndex;
+        int i = lesserThan;
+        int greaterThan = highIndex;
+        while (true){
+            if (i + 1 == greaterThan) {
+                swapForGreaterEl(arr, lesserThan, i);
+                lesserThan = greaterThan;
+                greaterThan = highIndex;
+                break;
+            }
+            while (arr[i] < arr[lesserThan]) {
+                swapForSmallerEl(arr, lesserThan);
+                lesserThan++;
+                i++;
+            }
+            while (arr[i] > partitionElement) {
+                swapForGreaterEl(arr, i, greaterThan);
+                greaterThan--;
+            }
+            if (arr[i] == partitionElement)
+                i++;
+        }
+        quickSortWithDijkstra(arr,lesserThan+1,greaterThan);
     }
 
     public static void quickSortGeneralWithDijkstra(int[] array) {
@@ -263,5 +277,23 @@ public class Sorter {
                 j--;
             }
         }
+    }
+
+    public static void swapElementsThroughIndex(int[] arr, int firstElement, int secondElement) {
+        int temp = arr[firstElement];
+        arr[firstElement] = arr[secondElement];
+        arr[secondElement] = temp;
+    }
+
+    public static void swapForSmallerEl(int[] arr, int i) {
+        int temp = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = temp;
+    }
+
+    public static void swapForGreaterEl(int[] arr, int i, int greaterThan) {
+        int temp = arr[greaterThan];
+        arr[greaterThan] = arr[i];
+        arr[i] = temp;
     }
 }
