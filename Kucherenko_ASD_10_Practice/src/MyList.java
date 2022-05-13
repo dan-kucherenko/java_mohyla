@@ -1,32 +1,40 @@
 public class MyList<T extends Number & Comparable<T>> {
     private Node head;
+    private Node tail;
     public int length;
+
+
     public MyList() {
-        head = null;
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
     }
 
     class Node {
         private T data;
         private Node next;
+        private Node previous;
+
         public Node(T data) {
             this.data = data;
-            next = null;
+            this.next = null;
+            this.previous = null;
         }
     }
 
     public void add(T data) {
         Node newNode = new Node(data);
-        Node currentNode = head;
         if (head == null) {
-            head = newNode;
-            length++;
+            head = tail = newNode;
+            head.previous = null;
+            tail.next = null;
         } else {
-            while (currentNode.next != null)
-                currentNode = currentNode.next;
-            currentNode.next = newNode;
-            length++;
+            tail.next = newNode;
+            newNode.previous = tail;
+            tail = newNode;
+            tail.next = null;
         }
-
+        length++;
     }
 
     @Override
