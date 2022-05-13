@@ -13,8 +13,6 @@ public class MyGraph {
         adjacencyList = new MyList[numberOfVertices];
         for (int i = 0; i < numberOfVertices; i++) {
             adjacencyList[i] = new MyList<Integer>();
-        }
-        for (int i = 0; i < numberOfVertices; i++) {
             for (int j = 0; j < numberOfVertices; j++) {
                 if (adjacencyMatrix[i][j] == 1)
                     adjacencyList[i].add(j + 1);
