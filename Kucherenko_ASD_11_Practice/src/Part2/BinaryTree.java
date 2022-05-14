@@ -1,11 +1,14 @@
 package Part2;
 
+import java.util.NoSuchElementException;
+
 public class BinaryTree<T> {
     private T data;
     private Node root;
     private int length;
     private Node leftChild;
     private Node rightChild;
+    private Node parent;
 
     class Node {
         private T data;
@@ -29,18 +32,18 @@ public class BinaryTree<T> {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        if (exceptions == 0)
+        if (exceptions == 0) {
+            Node root = new Node(data);
+            this.root = root;
             this.data = data;
+        }
     }
 
-    public Node addNode(Node node, T data) {
-        if (node == null)
-            return new Node(data);
-        if ((double) data < (double) node.data)
-            node.left = addNode(node.left, data);
-        else if ((double) data > (double) node.data)
-            node.right = addNode(node.right, data);
-        return node;
+    public void addRoot(T data) {
+        Node newNode = new Node(data);
+        if (root == null)
+            root = newNode;
+        length++;
     }
 
     public boolean isEmpty() {
@@ -51,10 +54,12 @@ public class BinaryTree<T> {
         return length;
     }
 
-    public boolean contains(Node currentNode, T element) {
+    public boolean contains(T searchedValue) { //fix for binary tree
+        boolean isPresent = true;
+        Node current = root;
         int exceptions = 0;
         try {
-            if (element == null) {
+            if (current == null) {
                 exceptions++;
                 throw new NullPointerException();
             }
@@ -62,14 +67,83 @@ public class BinaryTree<T> {
             nullPointerException.printStackTrace();
         }
         if (exceptions == 0) {
-            if (element == currentNode.data)
-                return true;
-            if (currentNode == null)
-                return false;
+
         }
-        return (double) data < (double) currentNode.data
-                ? contains(currentNode.left, element)
-                : contains(currentNode.right, element);
+        return isPresent;
     }
 
+    public void addLeftChild(Node nodeToAdd, T element) {
+        int exceptions = 0;
+        try {
+            if (!contains(nodeToAdd.data)) {
+                exceptions++;
+                throw new NoSuchElementException();
+            } else if (element == null) {
+                exceptions++;
+                throw new NullPointerException();
+            } else if (nodeToAdd.left != null) {
+                exceptions++;
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (exceptions == 0) {
+            Node leftChildNode = new Node(element);
+            nodeToAdd.left = leftChildNode;
+            length++;
+//            leftChildNode. = nodeToAdd;
+        }
+    }
+
+    public void addRightChild(Node nodeToAdd, T element) {
+        int exceptions = 0;
+        try {
+            if (!contains(nodeToAdd.data)) {
+                exceptions++;
+                throw new NoSuchElementException();
+            } else if (element == null) {
+                exceptions++;
+                throw new NullPointerException();
+            } else if (nodeToAdd.right != null) {
+                exceptions++;
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (exceptions == 0) {
+            Node rightChildNode = new Node(element);
+            nodeToAdd.right = rightChildNode;
+            length++;
+        }
+    }
+
+    public void deleteLeaf(T element) {
+        int exceptions = 0;
+        try {
+            if (!contains(element)) {
+                exceptions++;
+                throw new NoSuchElementException();
+            } else if (element == null) {
+                exceptions++;
+                throw new NullPointerException();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (exceptions == 0) {
+
+        }
+    }
+
+    @Override
+    public String toString() {
+        Node currentNode = root;
+        String res = "";
+//        while ((currentNode.left || currentNode.right) != null) {
+
+//        }
+        return res;
+    }
 }
