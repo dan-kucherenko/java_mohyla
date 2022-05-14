@@ -1,3 +1,5 @@
+package Part1;
+
 import java.util.Scanner;
 
 public class BinaryTreeFromArr {
@@ -8,10 +10,10 @@ public class BinaryTreeFromArr {
         BinaryTreeForArrRealisation<String> obj = new BinaryTreeForArrRealisation<>(length);
         obj.setRoot("A");
         //    obj.set_Left("B", 0);
-        obj.setLeft("C", 0);
-        obj.setRight("D", 0);
-        obj.setLeft("E", 1);
-        obj.setRight("F", 2);
+        obj.addLeftChild(0, "C");
+        obj.addRightChild(0, "D");
+        obj.addLeftChild(1, "E");
+        obj.addRightChild(2, "F");
         obj.printTheBinaryTree();
     }
 }

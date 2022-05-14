@@ -1,3 +1,5 @@
+package Part1;
+
 public class BinaryTreeForArrRealisation<T> {
     private T[] arr;
     private T root;
@@ -14,7 +16,7 @@ public class BinaryTreeForArrRealisation<T> {
     }
 
 
-    public void setLeft(T key, int root) {
+    public void addLeftChild(int root, T key) {
         int leafIndex = (root * 2) + 1;
         if (arr[root] == null)
             System.out.println("There is no parent for this child");
@@ -22,7 +24,7 @@ public class BinaryTreeForArrRealisation<T> {
             arr[leafIndex] = key;
     }
 
-    public void setRight(T key, int root) {
+    public void addRightChild(int root, T key) {
         int leafIndex = (root * 2) + 2;
         if (arr[root] == null)
             System.out.println("There is no parent for this child");
