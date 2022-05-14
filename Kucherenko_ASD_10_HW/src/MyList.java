@@ -40,17 +40,17 @@ public class MyList<T extends Number & Comparable<T>> {
     @Override
     public String toString() {
         Node currentNode = head;
-        String listAsString = "{";
+        String listAsString = "";
         if (head == null)
             return "List is empty";
         else {
             while (currentNode != null) {
                 listAsString += currentNode.data;
                 if (currentNode.next != null)
-                    listAsString += ", ";
+                    listAsString += " -> ";
                 currentNode = currentNode.next;
             }
         }
-        return listAsString + '}';
+        return listAsString;
     }
 }

@@ -25,9 +25,8 @@ public class MyGraph {
     @Override
     public String toString() {
         String result = "";
-        for (int i = 0; i < numOfRows; i++)
-            result += (i + 1) + " -> " + adjacencyList[i].toString() + '\n';
+        for (int rows = 0; rows < numOfRows; rows++)
+            result += adjacencyList[rows].toString() + '\n';
         return result;
     }
-
 }
