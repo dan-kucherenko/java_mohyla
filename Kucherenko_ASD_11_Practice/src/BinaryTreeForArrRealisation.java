@@ -1,21 +1,7 @@
-package Part1;
-
-import Part2.BinaryTree;
-
 public class BinaryTreeForArrRealisation<T> {
     private T[] arr;
-    private Node root;
+    private TreeNode root;
     private int length;
-    class Node {
-        T data;
-        Node left, right;
-        Node(T data)
-        {
-            this.data = data;
-            this.left = null;
-            this.right = null;
-        }
-    }
 
     public BinaryTreeForArrRealisation(int arrLength) {
         this.length = arrLength;
@@ -23,7 +9,6 @@ public class BinaryTreeForArrRealisation<T> {
     }
 
     public void setRoot(T root) {
-        this.root.data = root;
         arr[0] = root;
         length++;
     }
@@ -47,22 +32,25 @@ public class BinaryTreeForArrRealisation<T> {
         length++;
     }
 
-//    public boolean hasLeftChild() {
-//        return arr[2 * (int) root + 1] != null;
-//    }
-//
-//    public boolean hasRightChild() {
-//        return arr[2 * (int) root + 2] != null;
-//    }
+    @Override
+    public String toString() {
+        String res = toString(root);
+        return "(" + res + ")";
+    }
 
-//    @Override
-//    public String toString() {
-//        T currentNode = root;
-//        String res = "";
-//        while ((hasLeftChild() || hasRightChild())) {
-//            res += "(" + currentNode + "(" + currentNode. ")";
-//            currentNode = currentNode.left;
-//        }
-//        return res;
-//    }
+    private String toString(TreeNode parent) {
+        String res = "";
+        res += parent.data;
+        if (parent.leftChild != null) {
+            res += "(" + toString(parent.leftChild) + ",";
+            if (parent.rightChild == null)
+                res += "*)";
+        }
+        if (parent.rightChild != null) {
+            if (parent.leftChild == null)
+                res += "(*,";
+            res += toString(parent.rightChild) + ")";
+        }
+        return res;
+    }
 }

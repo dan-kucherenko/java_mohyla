@@ -1,5 +1,3 @@
-package Part2;
-
 import java.util.NoSuchElementException;
 
 public class BinaryTree<T> {
@@ -12,7 +10,7 @@ public class BinaryTree<T> {
     public BinaryTree(TreeNode root) {
         int exceptions = 0;
         try {
-            if (root == null) {
+            if (root.data == null) {
                 exceptions++;
                 throw new NullPointerException();
             }
@@ -26,7 +24,7 @@ public class BinaryTree<T> {
     }
 
     public boolean isEmpty() {
-        return root == null;
+        return length == 0;
     }
 
     public int getLength() {
@@ -34,7 +32,7 @@ public class BinaryTree<T> {
     }
 
     public boolean contains(T searchedValue) { //fix for binary tree
-        boolean isPresent = true;
+        boolean isPresent = false;
         TreeNode current = root;
         int exceptions = 0;
         try {
@@ -46,6 +44,8 @@ public class BinaryTree<T> {
             nullPointerException.printStackTrace();
         }
         if (exceptions == 0) {
+            TreeNode nodeToFind = new TreeNode(searchedValue);
+            TreeNode currentNode = root;
 
         }
         return isPresent;
@@ -109,6 +109,7 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
+            TreeNode nodeToDelete = new TreeNode(element);
 
         }
     }

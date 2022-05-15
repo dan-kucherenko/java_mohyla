@@ -1,9 +1,7 @@
-package Part2;
-
 public class TreeNode<T> {
-    public T data;
-    public TreeNode leftChild;
-    public TreeNode rightChild;
+    T data;
+    TreeNode leftChild;
+    TreeNode rightChild;
 
     public TreeNode(T data) {
         this.data = data;
