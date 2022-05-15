@@ -5,8 +5,8 @@ public class BinaryTreeTester {
 
         BinaryTree<Integer> binaryTree = new BinaryTree(1);
         binaryTree.addRightChild(2);
-        binaryTree.addLeftChild(3);
-        System.out.println(binaryTree.contains(4));
+        binaryTree.addLeftChild(2,3);
+        System.out.println(binaryTree.findNodeFromEl(binaryTree.root, 3));
 
         System.out.println("Testing default binary tree:\n");
 
