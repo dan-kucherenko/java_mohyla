@@ -14,6 +14,6 @@ public class BinaryTreeFromArr {
         obj.addRightChild(0, "D");
         obj.addLeftChild(1, "E");
         obj.addRightChild(2, "F");
-        obj.printTheBinaryTree();
+//        obj.printTheBinaryTree();
     }
 }

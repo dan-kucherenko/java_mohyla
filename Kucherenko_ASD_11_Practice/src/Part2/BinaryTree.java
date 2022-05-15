@@ -1,21 +1,23 @@
 package Part2;
 
+import com.sun.source.tree.Tree;
+
 import java.util.NoSuchElementException;
 
 public class BinaryTree<T> {
     private T data;
-    private Node root;
+    public TreeNode root;
     private int length;
-    private Node leftChild;
-    private Node rightChild;
-    private Node parent;
+    private TreeNode leftChild;
+    private TreeNode rightChild;
+    private TreeNode parent;
 
-    class Node {
+    class TreeNode {
         private T data;
-        private Node left;
-        private Node right;
+        private TreeNode left;
+        private TreeNode right;
 
-        public Node(T data) {
+        public TreeNode(T data) {
             this.data = data;
             this.left = null;
             this.right = null;
@@ -33,18 +35,18 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            Node root = new Node(data);
+            TreeNode root = new TreeNode(data);
             this.root = root;
             this.data = data;
         }
     }
 
-    public void addRoot(T data) {
-        Node newNode = new Node(data);
-        if (root == null)
-            root = newNode;
-        length++;
-    }
+//    public void addRoot(T data) {
+//        TreeNode newNode = new TreeNode(data);
+//        if (root == null)
+//            root = newNode;
+//        length++;
+//    }
 
     public boolean isEmpty() {
         return root == null;
@@ -54,9 +56,17 @@ public class BinaryTree<T> {
         return length;
     }
 
+    public boolean hasLeftChild() {
+        return this.leftChild != null;
+    }
+
+    public boolean hasRightChild() {
+        return this.rightChild != null;
+    }
+
     public boolean contains(T searchedValue) { //fix for binary tree
         boolean isPresent = true;
-        Node current = root;
+        TreeNode current = root;
         int exceptions = 0;
         try {
             if (current == null) {
@@ -72,7 +82,7 @@ public class BinaryTree<T> {
         return isPresent;
     }
 
-    public void addLeftChild(Node nodeToAdd, T element) {
+    public void addLeftChild(TreeNode nodeToAdd, T element) {
         int exceptions = 0;
         try {
             if (!contains(nodeToAdd.data)) {
@@ -89,14 +99,14 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            Node leftChildNode = new Node(element);
+            TreeNode leftChildNode = new TreeNode(element);
             nodeToAdd.left = leftChildNode;
             length++;
 //            leftChildNode. = nodeToAdd;
         }
     }
 
-    public void addRightChild(Node nodeToAdd, T element) {
+    public void addRightChild(TreeNode nodeToAdd, T element) {
         int exceptions = 0;
         try {
             if (!contains(nodeToAdd.data)) {
@@ -113,13 +123,13 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            Node rightChildNode = new Node(element);
+            TreeNode rightChildNode = new TreeNode(element);
             nodeToAdd.right = rightChildNode;
             length++;
         }
     }
 
-    public void deleteLeaf(T element) {
+    public void delete(T element) {
         int exceptions = 0;
         try {
             if (!contains(element)) {
@@ -137,13 +147,24 @@ public class BinaryTree<T> {
         }
     }
 
+    private String toString(TreeNode root) {
+        String res = "";
+        if (root == null)
+            return "";
+        res += root.data;
+//        if (root.left == null && root.right == null)
+//            return "";
+        res += '(' + toString(root.left);
+        if (root.right != null) {
+            res += "," + toString(root.right);
+            res += ')';
+        }
+        return res;
+    }
+
     @Override
     public String toString() {
-        Node currentNode = root;
-        String res = "";
-//        while ((currentNode.left || currentNode.right) != null) {
-
-//        }
-        return res;
+        String res = toString(root);
+        return res ;
     }
 }
