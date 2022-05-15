@@ -11,4 +11,12 @@ public class TreeNode<T> {
         this.parent = null;
     }
 
+    public void addLeftChild(T element) {
+        this.leftChild = (TreeNode) element;
+    }
+
+    public void addRightChild(T element) {
+        this.rightChild = (TreeNode) element;
+    }
+
 }

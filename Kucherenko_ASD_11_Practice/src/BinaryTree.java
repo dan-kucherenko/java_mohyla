@@ -3,9 +3,6 @@ import java.util.NoSuchElementException;
 public class BinaryTree<T> {
     private TreeNode root;
     private int length;
-    private TreeNode leftChild;
-    private TreeNode rightChild;
-    private TreeNode parent;
 
     public BinaryTree(TreeNode root) {
         int exceptions = 0;
@@ -18,11 +15,7 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            if (root instanceof TreeNode<?>) {
-                this.root = new TreeNode(((TreeNode<?>) root).data);
-            } else {
-                this.root = new TreeNode(root);
-//            }
+            this.root = root;
             length++;
         }
     }
@@ -35,7 +28,7 @@ public class BinaryTree<T> {
         return length;
     }
 
-    public boolean contains(T searchedValue) { //fix for binary tree
+    public boolean contains(T searchedValue) {
         int exceptions = 0;
         boolean isPresent = false;
         try {
@@ -51,9 +44,8 @@ public class BinaryTree<T> {
         return isPresent;
     }
 
-    public void addLeftChild(T element) {
+    public void addLeftChild( T element) {
         int exceptions = 0;
-//        TreeNode elementToAddNode = findNodeFromEl(elementToAdd);
         try {
 //            if (!contains(elementToAdd)) {
 //                exceptions++;
@@ -77,7 +69,6 @@ public class BinaryTree<T> {
 
     public void addRightChild(T element) {
         int exceptions = 0;
-//        TreeNode elementToAddNode = findNodeFromEl(elementToAdd);
         try {
 //            if (!contains(elementToAdd)) {
 //                exceptions++;
