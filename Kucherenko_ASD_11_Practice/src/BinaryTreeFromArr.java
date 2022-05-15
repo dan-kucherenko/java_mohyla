@@ -5,13 +5,13 @@ public class BinaryTreeFromArr {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the length of the array you want to get a binary tree from: ");
         int length = sc.nextInt();
-        BinaryTreeForArrRealisation<String> obj = new BinaryTreeForArrRealisation<>(length);
-        obj.setRoot("A");
+        BinaryTreeForArrRealisation<String> binaryTree = new BinaryTreeForArrRealisation<>(length);
+        binaryTree.setRoot("A");
         //    obj.set_Left("B", 0);
-        obj.addLeftChild(0, "C");
-        obj.addRightChild(0, "D");
-        obj.addLeftChild(1, "E");
-        obj.addRightChild(2, "F");
-//        obj.printTheBinaryTree();
+        binaryTree.addRightChild(0, "D");
+        binaryTree.addLeftChild(0, "C");
+        binaryTree.addLeftChild(1, "E");
+        binaryTree.addRightChild(1, "F");
+        System.out.println(binaryTree.toString());
     }
 }

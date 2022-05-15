@@ -10,26 +10,34 @@ public class BinaryTreeForArrRealisation<T> {
 
     public void setRoot(T root) {
         arr[0] = root;
+        TreeNode rootNode = new TreeNode(root);
+        this.root = rootNode;
         length++;
     }
 
 
-    public void addLeftChild(int root, T key) {
-        int leafIndex = (root * 2) + 1;
-        if (arr[root] == null)
+    public void addLeftChild(int rootIndex, T key) {
+        int leafIndex = (rootIndex * 2) + 1;
+        if (arr[rootIndex] == null)
             System.out.println("There is no parent for this child");
-        else
+        else {
             arr[leafIndex] = key;
-        length++;
+            TreeNode leftChild = new TreeNode(key);
+            this.root.leftChild = leftChild;
+            length++;
+        }
     }
 
-    public void addRightChild(int root, T key) {
-        int leafIndex = (root * 2) + 2;
-        if (arr[root] == null)
+    public void addRightChild(int rootIndex, T key) {
+        int leafIndex = (rootIndex * 2) + 2;
+        if (arr[rootIndex] == null)
             System.out.println("There is no parent for this child");
-        else
+        else {
             arr[leafIndex] = key;
-        length++;
+            TreeNode rightChild = new TreeNode(key);
+            this.root.rightChild = rightChild;
+            length++;
+        }
     }
 
     @Override

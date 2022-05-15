@@ -1,11 +1,11 @@
 import java.util.NoSuchElementException;
 
 public class BinaryTree<T> {
-    public TreeNode root;
+    private TreeNode root;
     private int length;
-//    private TreeNode leftChild;
-//    private TreeNode rightChild;
-//    private TreeNode parent;
+    private TreeNode leftChild;
+    private TreeNode rightChild;
+    private TreeNode parent;
 
     public BinaryTree(TreeNode root) {
         int exceptions = 0;
@@ -18,7 +18,11 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            this.root = root;
+            if (root instanceof TreeNode<?>) {
+                this.root = new TreeNode(((TreeNode<?>) root).data);
+            } else {
+                this.root = new TreeNode(root);
+//            }
             length++;
         }
     }
@@ -32,11 +36,10 @@ public class BinaryTree<T> {
     }
 
     public boolean contains(T searchedValue) { //fix for binary tree
-        boolean isPresent = false;
-        TreeNode current = root;
         int exceptions = 0;
+        boolean isPresent = false;
         try {
-            if (current == null) {
+            if (searchedValue == null) {
                 exceptions++;
                 throw new NullPointerException();
             }
@@ -44,23 +47,22 @@ public class BinaryTree<T> {
             nullPointerException.printStackTrace();
         }
         if (exceptions == 0) {
-            TreeNode nodeToFind = new TreeNode(searchedValue);
-            TreeNode currentNode = root;
-
         }
         return isPresent;
     }
 
-    public void addLeftChild(TreeNode nodeToAdd, TreeNode element) {
+    public void addLeftChild(T element) {
         int exceptions = 0;
+//        TreeNode elementToAddNode = findNodeFromEl(elementToAdd);
         try {
-            if (!contains((T) nodeToAdd.data)) {
-                exceptions++;
-                throw new NoSuchElementException();
-            } else if (element == null) {
+//            if (!contains(elementToAdd)) {
+//                exceptions++;
+//                throw new NoSuchElementException();
+//            } else
+            if (element == null) {
                 exceptions++;
                 throw new NullPointerException();
-            } else if (nodeToAdd.leftChild != null) {
+            } else if (root.leftChild != null) {
                 exceptions++;
                 throw new IllegalArgumentException();
             }
@@ -68,21 +70,23 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            nodeToAdd.leftChild = element;
+            root.leftChild = (TreeNode) element;
             length++;
         }
     }
 
-    public void addRightChild(TreeNode nodeToAdd, TreeNode element) {
+    public void addRightChild(T element) {
         int exceptions = 0;
+//        TreeNode elementToAddNode = findNodeFromEl(elementToAdd);
         try {
-            if (!contains((T) nodeToAdd.data)) {
-                exceptions++;
-                throw new NoSuchElementException();
-            } else if (element == null) {
+//            if (!contains(elementToAdd)) {
+//                exceptions++;
+//                throw new NoSuchElementException();
+//            } else
+            if (element == null) {
                 exceptions++;
                 throw new NullPointerException();
-            } else if (nodeToAdd.rightChild != null) {
+            } else if (root.rightChild != null) {
                 exceptions++;
                 throw new IllegalArgumentException();
             }
@@ -90,13 +94,14 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            nodeToAdd.rightChild = element;
+            root.rightChild = (TreeNode) element;
             length++;
         }
     }
 
     public void delete(T element) {
         int exceptions = 0;
+        TreeNode rootNode = new TreeNode(root);
         try {
             if (!contains(element)) {
                 exceptions++;
@@ -110,28 +115,27 @@ public class BinaryTree<T> {
         }
         if (exceptions == 0) {
             TreeNode nodeToDelete = new TreeNode(element);
-
         }
     }
 
-    @Override
+
     public String toString() {
         String res = toString(root);
         return "(" + res + ")";
     }
 
-    private String toString(TreeNode parent) {
+    private String toString(TreeNode root) {
         String res = "";
-        res += parent.data;
-        if (parent.leftChild != null) {
-            res += "(" + toString(parent.leftChild) + ",";
-            if (parent.rightChild == null)
+        res += root.data;
+        if (root.leftChild != null) {
+            res += "(" + toString(root.leftChild) + ",";
+            if (root.rightChild == null)
                 res += "*)";
         }
-        if (parent.rightChild != null) {
-            if (parent.leftChild == null)
+        if (root.rightChild != null) {
+            if (root.leftChild == null)
                 res += "(*,";
-            res += toString(parent.rightChild) + ")";
+            res += toString(root.rightChild) + ")";
         }
         return res;
     }
