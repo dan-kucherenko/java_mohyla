@@ -1,5 +1,3 @@
-import com.sun.source.tree.Tree;
-
 public class TreeNode<T> {
     T data;
     TreeNode<T> leftChild;
