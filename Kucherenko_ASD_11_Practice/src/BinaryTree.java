@@ -1,7 +1,7 @@
 import java.util.NoSuchElementException;
 
 public class BinaryTree<T> {
-     TreeNode<T> root;
+    TreeNode<T> root;
     private int length;
 
     public BinaryTree(T rootValue) {
@@ -46,7 +46,7 @@ public class BinaryTree<T> {
 
     public void addLeftChild(T elementToAdd, T element) {
         int exceptions = 0;
-        TreeNode<T>nodeOfElementToAdd = new TreeNode<>(elementToAdd);
+        TreeNode<T> nodeOfElementToAdd = findNodeFromEl(root, elementToAdd);
         try {
             if (!contains(elementToAdd)) {
                 exceptions++;
@@ -67,17 +67,17 @@ public class BinaryTree<T> {
         }
     }
 
-    public void addRightChild(T element) {
+    public void addRightChild(T elementToAdd, T element) {
         int exceptions = 0;
+        TreeNode<T> nodeOfElementToAdd = findNodeFromEl(root, elementToAdd);
         try {
-//            if (!contains(element)) {
-//                exceptions++;
-//                throw new NoSuchElementException();
-//            } else
-            if (element == null) {
+            if (!contains(elementToAdd)) {
+                exceptions++;
+                throw new NoSuchElementException();
+            } else if (element == null) {
                 exceptions++;
                 throw new NullPointerException();
-            } else if (root.rightChild != null) {
+            } else if (nodeOfElementToAdd.rightChild != null) {
                 exceptions++;
                 throw new IllegalArgumentException();
             }
@@ -85,7 +85,7 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            root.rightChild = new TreeNode<T>(element);
+            nodeOfElementToAdd.rightChild = new TreeNode<T>(element);
             length++;
         }
     }
@@ -114,30 +114,13 @@ public class BinaryTree<T> {
         String res = toString(root);
         return "(" + res + ")";
     }
-
-
-//        private String toString(TreeNode root) {
-//        String res = "";
-//        res += root.data;
-//        if (root.leftChild != null) {
-//            res += "(" + toString(root.leftChild) + ",";
-//            if (root.rightChild == null)
-//                res += "*)";
-//        }
-//        if (root.rightChild != null) {
-//            if (root.leftChild == null)
-//                res += "(*,";
-//            res += toString(root.rightChild) + ")";
-//        }
-//        return res;
-//    }
     private String toString(TreeNode<T> root) {
         String res = "";
         if (root == null)
-            return res += " ";
+            return res += "*"; // * is used for empty child
         if (root.leftChild == null && root.rightChild == null)
             return res += root.data;
-        return root.data.toString() + "(" + toString(root.leftChild) + ", " + toString(root.rightChild) + ")";
+        return root.data.toString() + "(" + toString(root.leftChild) + "," + toString(root.rightChild) + ")";
     }
 
     private boolean containsRecursive(TreeNode<T> nodeToStartWith, T valueToSearchFor) {
@@ -154,7 +137,7 @@ public class BinaryTree<T> {
         return false;
     }
 
-    public TreeNode<T> findNodeFromEl(TreeNode<T> nodeToStart, T valueToSearchFor) {
+    private TreeNode<T> findNodeFromEl(TreeNode<T> nodeToStart, T valueToSearchFor) {
         if (nodeToStart == null || nodeToStart == null)
             return null;
         if (nodeToStart.data == valueToSearchFor)

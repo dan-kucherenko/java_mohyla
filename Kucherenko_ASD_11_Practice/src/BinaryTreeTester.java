@@ -1,19 +1,16 @@
-
+import java.util.Locale;
 
 public class BinaryTreeTester {
     public static void main(String[] args) {
 
         BinaryTree<Integer> binaryTree = new BinaryTree(1);
-        binaryTree.addRightChild(2);
-        binaryTree.addLeftChild(2,3);
-        System.out.println(binaryTree.findNodeFromEl(binaryTree.root, 3));
-
-        System.out.println("Testing default binary tree:\n");
-
-        System.out.println("Your binary tree looks like: \n" + binaryTree + '\n');
-//        System.out.println("Your binary tree is empty: " + binaryTree.isEmpty());
-//        System.out.println("Number of vertices of the binary tree is: " + binaryTree.getLength());
-//        System.out.println(binaryTree.contains(3));
+        binaryTree.addRightChild(1, 2);
+        binaryTree.addLeftChild(2, 3);
+        System.out.println("Testing default binary tree:\n".toUpperCase(Locale.ROOT));
+        System.out.println("Your binary tree looks like: " + binaryTree);
+        System.out.println("Your binary tree is empty: " + binaryTree.isEmpty());
+        System.out.println("Number of vertices of the binary tree is: " + binaryTree.getLength());
+        System.out.println("Your binary tree contains the inserted element: " + binaryTree.contains(3));
 //        binaryTree.delete(node3);
 
 //        TreeNode node4 = new TreeNode(null);
