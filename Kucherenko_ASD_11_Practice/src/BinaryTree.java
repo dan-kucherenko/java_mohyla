@@ -63,6 +63,7 @@ public class BinaryTree<T> {
         }
         if (exceptions == 0) {
             nodeOfElementToAdd.leftChild = new TreeNode<T>(element);
+            nodeOfElementToAdd.leftChild.parent = nodeOfElementToAdd;
             length++;
         }
     }
@@ -86,13 +87,13 @@ public class BinaryTree<T> {
         }
         if (exceptions == 0) {
             nodeOfElementToAdd.rightChild = new TreeNode<T>(element);
+            nodeOfElementToAdd.rightChild.parent = nodeOfElementToAdd;
             length++;
         }
     }
 
     public void delete(T element) {
         int exceptions = 0;
-        TreeNode rootNode = new TreeNode(root);
         try {
             if (!contains(element)) {
                 exceptions++;
@@ -105,15 +106,41 @@ public class BinaryTree<T> {
             e.printStackTrace();
         }
         if (exceptions == 0) {
-            TreeNode nodeToDelete = new TreeNode(element);
+            TreeNode<T> nodeToDelete = findNodeFromEl(root, element);
+            if (nodeToDelete == null)
+                return;
+            if (nodeToDelete.leftChild != null && nodeToDelete.rightChild != null) {
+                nodeToDelete.data = nodeToDelete.leftChild.data;
+                nodeToDelete.leftChild = null;
+                if (nodeToDelete.leftChild == null) {
+                    nodeToDelete.leftChild = nodeToDelete.rightChild;
+                    nodeToDelete.rightChild = null;
+                } else {
+                    if (nodeToDelete.leftChild.leftChild == null) {
+                        nodeToDelete.leftChild.leftChild = nodeToDelete.rightChild;
+                        nodeToDelete.rightChild = null;
+                    }
+                }
+                delete(nodeToDelete.leftChild.data);
+                return;
+            }
+            if (nodeToDelete.leftChild != null) {
+                nodeToDelete.data = nodeToDelete.leftChild.data;
+                nodeToDelete.leftChild = null;
+                return;
+            }
+            if (nodeToDelete.rightChild != null) {
+                nodeToDelete.data = nodeToDelete.rightChild.data;
+                nodeToDelete.rightChild = null;
+            }
         }
     }
-
 
     public String toString() {
         String res = toString(root);
         return "(" + res + ")";
     }
+
     private String toString(TreeNode<T> root) {
         String res = "";
         if (root == null)
@@ -131,6 +158,8 @@ public class BinaryTree<T> {
         else {
             if (nodeToStartWith.leftChild != null)
                 return containsRecursive(nodeToStartWith.leftChild, valueToSearchFor);
+            else
+                nodeToStartWith = nodeToStartWith.parent;
             if (nodeToStartWith.rightChild != null)
                 return containsRecursive(nodeToStartWith.rightChild, valueToSearchFor);
         }
@@ -138,13 +167,15 @@ public class BinaryTree<T> {
     }
 
     private TreeNode<T> findNodeFromEl(TreeNode<T> nodeToStart, T valueToSearchFor) {
-        if (nodeToStart == null || nodeToStart == null)
+        if (nodeToStart == null)
             return null;
         if (nodeToStart.data == valueToSearchFor)
             return nodeToStart;
         else {
             if (nodeToStart.leftChild != null)
                 return findNodeFromEl(nodeToStart.leftChild, valueToSearchFor);
+            else
+                nodeToStart = nodeToStart.parent;
             if (nodeToStart.rightChild != null)
                 return findNodeFromEl(nodeToStart.rightChild, valueToSearchFor);
         }

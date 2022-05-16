@@ -5,13 +5,19 @@ public class BinaryTreeTester {
 
         BinaryTree<Integer> binaryTree = new BinaryTree(1);
         binaryTree.addRightChild(1, 2);
-        binaryTree.addLeftChild(2, 3);
+        binaryTree.addLeftChild(1, 3);
+        binaryTree.addRightChild(2, 5);
+        binaryTree.addLeftChild(2, 4);
+        binaryTree.addLeftChild(5,9);
+        binaryTree.addRightChild(5,8);
+//        binaryTree.addLeftChild(5,4);
         System.out.println("Testing default binary tree:\n".toUpperCase(Locale.ROOT));
         System.out.println("Your binary tree looks like: " + binaryTree);
-        System.out.println("Your binary tree is empty: " + binaryTree.isEmpty());
-        System.out.println("Number of vertices of the binary tree is: " + binaryTree.getLength());
-        System.out.println("Your binary tree contains the inserted element: " + binaryTree.contains(3));
-//        binaryTree.delete(node3);
+//        System.out.println("Your binary tree is empty: " + binaryTree.isEmpty());
+//        System.out.println("Number of vertices of the binary tree is: " + binaryTree.getLength());
+//        System.out.println("Your binary tree contains the inserted element: " + binaryTree.contains(3));
+        binaryTree.delete(3);
+        System.out.println("Your binary tree looks like: " + binaryTree);
 
 //        TreeNode node4 = new TreeNode(null);
 //        TreeNode node5 = new TreeNode(2);
