@@ -6,26 +6,28 @@ public class BinaryTreeTester {
         BinaryTree<Integer> binaryTree = new BinaryTree(1);
         binaryTree.addRightChild(1, 2);
         binaryTree.addLeftChild(1, 3);
-        binaryTree.addRightChild(2, 5);
-        binaryTree.addLeftChild(2, 4);
+        binaryTree.addRightChild(3, 5);
+        binaryTree.addLeftChild(3, 4);
         binaryTree.addLeftChild(5,9);
-        binaryTree.addRightChild(5,8);
-//        binaryTree.addLeftChild(5,4);
         System.out.println("Testing default binary tree:\n".toUpperCase(Locale.ROOT));
         System.out.println("Your binary tree looks like: " + binaryTree);
-//        System.out.println("Your binary tree is empty: " + binaryTree.isEmpty());
-//        System.out.println("Number of vertices of the binary tree is: " + binaryTree.getLength());
-//        System.out.println("Your binary tree contains the inserted element: " + binaryTree.contains(3));
+        System.out.println("Your binary tree is empty: " + binaryTree.isEmpty());
+        System.out.println("Number of vertices of the binary tree is: " + binaryTree.getLength());
+        System.out.println("Your binary tree contains the inserted element: " + binaryTree.contains(3));
         binaryTree.delete(3);
         System.out.println("Your binary tree looks like: " + binaryTree);
 
-//        TreeNode node4 = new TreeNode(null);
-//        TreeNode node5 = new TreeNode(2);
-//        TreeNode node6 = new TreeNode(6);
-//        System.out.println("\n\nTesting binary tree with exceptions: \n\n");
-//        BinaryTree<TreeNode> binaryTreeExceptions = new BinaryTree<>(node4); //throws NullPointerException
-//        binaryTreeExceptions.addLeftChild(node5, node6); //throws NoSuchElementExpression
-//        binaryTreeExceptions.delete(node4); //throws NoSuchElementExpression
-//        binaryTree.addLeftChild(node1, node6); //throws IllegalArgumentExpression
+        System.out.println("\n\nTesting binary tree with exceptions: \n\n".toUpperCase(Locale.ROOT));
+        BinaryTree<Integer> binaryTreeExceptions = new BinaryTree<>(null); //throws NullPointerException
+        BinaryTree<Integer> binaryTreeExceptions2 = new BinaryTree<>(2);
+        binaryTreeExceptions.contains(null); //throws NullPointerException
+        binaryTreeExceptions.addLeftChild(1, 3); //throws NoSuchElementExpression
+        binaryTreeExceptions2.addLeftChild(2, 3);
+        binaryTreeExceptions2.addLeftChild(2, null); //throws NullPointerExpression
+        binaryTreeExceptions2.addLeftChild(2,4); //throws IllegalArgumentExpression
+        //The same exceptions work with addRightChild method
+        binaryTreeExceptions.delete(6); //throw NoSuchElementExpression
+        binaryTreeExceptions.delete(null); //throw NullPointerExpression
+
     }
 }

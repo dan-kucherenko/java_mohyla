@@ -48,7 +48,7 @@ public class BinaryTree<T> {
         int exceptions = 0;
         TreeNode<T> nodeOfElementToAdd = findNodeFromEl(root, elementToAdd);
         try {
-            if (!contains(elementToAdd)) {
+            if (nodeOfElementToAdd == null) {
                 exceptions++;
                 throw new NoSuchElementException();
             } else if (element == null) {
@@ -121,18 +121,23 @@ public class BinaryTree<T> {
                         nodeToDelete.rightChild = null;
                     }
                 }
-                delete(nodeToDelete.leftChild.data);
+                length--;
                 return;
             }
             if (nodeToDelete.leftChild != null) {
                 nodeToDelete.data = nodeToDelete.leftChild.data;
                 nodeToDelete.leftChild = null;
+                length--;
                 return;
             }
             if (nodeToDelete.rightChild != null) {
                 nodeToDelete.data = nodeToDelete.rightChild.data;
                 nodeToDelete.rightChild = null;
+                length--;
+                return;
             }
+            nodeToDelete.data = null;
+            length--;
         }
     }
 
@@ -143,7 +148,7 @@ public class BinaryTree<T> {
 
     private String toString(TreeNode<T> root) {
         String res = "";
-        if (root == null)
+        if (root == null || root.data == null)
             return res += "*"; // * is used for empty child
         if (root.leftChild == null && root.rightChild == null)
             return res += root.data;
