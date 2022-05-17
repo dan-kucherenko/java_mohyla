@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class BinarySearchTree<T extends Comparable<T>> {
     private TreeNode<T> root;
     private int length;
@@ -44,8 +46,25 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public T remove(T element) {
-        return removeRecursive(root, element).data;
+        int exceptions = 0;
+        try {
+            if (element == null) {
+                exceptions++;
+                throw new NullPointerException();
+            } else if (!contains(element)) {
+                exceptions++;
+                throw new NoSuchElementException();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (exceptions == 0) {
+            removeRecursive(root, element);
+            return element;
+        }
+        return null;
     }
+
     private TreeNode<T> removeRecursive(TreeNode<T> nodeToStart, T element) {
         if (element.compareTo(nodeToStart.data) < 0)
             return nodeToStart.leftChild = removeRecursive(nodeToStart.leftChild, element);
@@ -57,10 +76,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
             else if (nodeToStart.rightChild == null)
                 return nodeToStart.leftChild;
             nodeToStart.data = minValue(nodeToStart.rightChild);
-
             nodeToStart.rightChild = removeRecursive(nodeToStart.rightChild, nodeToStart.data);
         }
-        return root;
+        return nodeToStart;
     }
 
     private T minValue(TreeNode<T> nodeToStart) {
@@ -75,14 +93,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private boolean containsRecursive(TreeNode<T> nodeToStart, T element) {
         if (nodeToStart.data == element)
             return true;
-        return element.compareTo(nodeToStart.data) < 0 && nodeToStart.leftChild != null
-                ? containsRecursive(nodeToStart.leftChild, element)
-                : containsRecursive(nodeToStart.rightChild, element);
+        else if (element.compareTo(nodeToStart.data) < 0 && nodeToStart.leftChild != null)
+            return containsRecursive(nodeToStart.leftChild, element);
+        else if (element.compareTo(nodeToStart.data) > 0 && nodeToStart.rightChild != null)
+            return containsRecursive(nodeToStart.rightChild, element);
+        return false;
     }
 
     private String toStringRecursive(TreeNode<T> root) {
         String res = "";
-        if (root == null)
+        if (root == null || root.data == null)
             return res += "*"; // * is used for empty child
         if (root.leftChild == null && root.rightChild == null)
             return res += root.data;
