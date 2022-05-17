@@ -1,4 +1,4 @@
-public class BinarySearchTree<T extends Comparable<T>>  {
+public class BinarySearchTree<T extends Comparable<T>> {
     private TreeNode<T> root;
     private int length;
 
@@ -28,7 +28,17 @@ public class BinarySearchTree<T extends Comparable<T>>  {
     }
 
     public void add(T element) {
-        addRecursive(root, element);
+        int exceptions = 0;
+        try {
+            if (element == null) {
+                exceptions++;
+                throw new NullPointerException();
+            }
+        } catch (NullPointerException nullPointerException) {
+            nullPointerException.printStackTrace();
+        }
+        if (exceptions == 0)
+            addRecursive(root, element);
     }
 
     public String toString() {
@@ -44,13 +54,14 @@ public class BinarySearchTree<T extends Comparable<T>>  {
             return res += root.data;
         return root.data.toString() + "(" + toString(root.leftChild) + "," + toString(root.rightChild) + ")";
     }
+
     private TreeNode<T> addRecursive(TreeNode<T> nodeToStart, T element) {
-        if (nodeToStart != null) {
-            if (element.compareTo(nodeToStart.data) < 0)
-                nodeToStart.leftChild = addRecursive(nodeToStart.leftChild, element);
-            else if (element.compareTo(nodeToStart.data) > 0)
-                nodeToStart.rightChild = addRecursive(nodeToStart.rightChild, element);
-        }
+        if (nodeToStart == null)
+            return new TreeNode<>(element);
+        if (element.compareTo(nodeToStart.data) < 0)
+            nodeToStart.leftChild = addRecursive(nodeToStart.leftChild, element);
+        else
+            nodeToStart.rightChild = addRecursive(nodeToStart.rightChild, element);
         return nodeToStart;
     }
 }
