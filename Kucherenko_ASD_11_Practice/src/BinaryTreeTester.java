@@ -8,14 +8,15 @@ public class BinaryTreeTester {
         binaryTree.addLeftChild(1, 3);
         binaryTree.addRightChild(3, 5);
         binaryTree.addLeftChild(3, 4);
-        binaryTree.addLeftChild(5,9);
+        binaryTree.addLeftChild(5, 8);
+        binaryTree.addRightChild(5,9);
         System.out.println("Testing default binary tree:\n".toUpperCase(Locale.ROOT));
         System.out.println("Your binary tree looks like: " + binaryTree);
         System.out.println("Your binary tree is empty: " + binaryTree.isEmpty());
         System.out.println("Number of vertices of the binary tree is: " + binaryTree.getLength());
         System.out.println("Your binary tree contains the inserted element: " + binaryTree.contains(3));
         binaryTree.delete(3);
-        System.out.println("Your binary tree looks like: " + binaryTree);
+        System.out.println("Your binary tree after deleting an element looks like: " + binaryTree);
 
         System.out.println("\n\nTesting binary tree with exceptions: \n\n".toUpperCase(Locale.ROOT));
         BinaryTree<Integer> binaryTreeExceptions = new BinaryTree<>(null); //throws NullPointerException
