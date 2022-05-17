@@ -15,5 +15,7 @@ public class TesterBST {
         System.out.println("Your binary search tree contains the inserted element: " + binarySearchTree.contains(3));
         System.out.println("Deleted element is: "+ binarySearchTree.remove(10));
         System.out.println(binarySearchTree);
+        System.out.println(binarySearchTree.getElementsAsc());
+        System.out.println(binarySearchTree.getElementsDesc());
     }
 }

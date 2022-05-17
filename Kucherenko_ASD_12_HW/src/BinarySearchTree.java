@@ -4,6 +4,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private TreeNode<T> root;
     private int length;
 
+    public BinarySearchTree() {
+        root = null;
+    }
+
     public boolean isEmpty() {
         return length == 0;
     }
@@ -63,6 +67,34 @@ public class BinarySearchTree<T extends Comparable<T>> {
             return element;
         }
         return null;
+    }
+
+    public MyList<T> getElementsAsc() {
+        MyList<T> result = new MyList<>();
+        getElementAscRecursive(root, result);
+        return result;
+    }
+
+    public MyList<T> getElementsDesc() {
+        MyList<T> result = new MyList<>();
+        getElementDescRecursive(root, result);
+        return result;
+    }
+
+    private void getElementAscRecursive(TreeNode<T> nodeToStart, MyList<T> resultList) {
+        if (nodeToStart != null) {
+            getElementAscRecursive(nodeToStart.leftChild, resultList);
+            resultList.add(nodeToStart.data);
+            getElementAscRecursive(nodeToStart.rightChild, resultList);
+        }
+    }
+
+    private void getElementDescRecursive(TreeNode<T> nodeToStart, MyList<T> resultList) {
+        if (nodeToStart != null) {
+            getElementDescRecursive(nodeToStart.rightChild, resultList);
+            resultList.add(nodeToStart.data);
+            getElementDescRecursive(nodeToStart.leftChild, resultList);
+        }
     }
 
     private TreeNode<T> removeRecursive(TreeNode<T> nodeToStart, T element) {
