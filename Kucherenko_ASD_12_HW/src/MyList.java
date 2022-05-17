@@ -1,4 +1,4 @@
-public class MyList<T extends Comparable<T>> {
+class MyList<T extends Comparable<T>> {
     private Node head;
     public int length;
 
@@ -33,7 +33,7 @@ public class MyList<T extends Comparable<T>> {
 
     public String toString() {
         Node currentNode = head;
-        String listAsString = "Your list is: [ ";
+        String listAsString = "[ ";
         if (head == null) {
             return "List is empty";
         } else {

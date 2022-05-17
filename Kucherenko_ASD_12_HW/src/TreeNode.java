@@ -1,4 +1,4 @@
-public class TreeNode<T> {
+class TreeNode<T> {
     T data;
     TreeNode<T> leftChild;
     TreeNode<T> rightChild;

@@ -64,6 +64,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         if (exceptions == 0) {
             removeRecursive(root, element);
+            length--;
             return element;
         }
         return null;
@@ -99,9 +100,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private TreeNode<T> removeRecursive(TreeNode<T> nodeToStart, T element) {
         if (element.compareTo(nodeToStart.data) < 0)
-            return nodeToStart.leftChild = removeRecursive(nodeToStart.leftChild, element);
+            nodeToStart.leftChild = removeRecursive(nodeToStart.leftChild, element);
         else if (element.compareTo(nodeToStart.data) > 0)
-            return nodeToStart.rightChild = removeRecursive(nodeToStart.rightChild, element);
+            nodeToStart.rightChild = removeRecursive(nodeToStart.rightChild, element);
         else {
             if (nodeToStart.leftChild == null)
                 return nodeToStart.rightChild;
