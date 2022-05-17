@@ -2,29 +2,33 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private TreeNode<T> root;
     private int length;
 
-    public BinarySearchTree(T rootValue) {
-        int exceptions = 0;
-        try {
-            if (rootValue == null) {
-                exceptions++;
-                throw new NullPointerException();
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        if (exceptions == 0) {
-            this.root = new TreeNode<>(rootValue);
-            length++;
-        }
-    }
-
     public boolean isEmpty() {
         return length == 0;
     }
 
     public boolean contains(T element) {
-        boolean isPresent = false;
-        return isPresent;
+        int exception = 0;
+        try {
+            if (element == null) {
+                exception++;
+                throw new NullPointerException();
+            }
+        } catch (NullPointerException nullPointerException) {
+            nullPointerException.printStackTrace();
+        }
+        if (exception == 0)
+            return containsRecursive(root, element);
+        return false;
+    }
+
+    private boolean containsRecursive(TreeNode<T> nodeToStart, T element) {
+        if (nodeToStart.data == element)
+            return true;
+        if (element.compareTo(nodeToStart.data) < 0 && nodeToStart.leftChild != null)
+            return containsRecursive(nodeToStart.leftChild, element);
+        if (element.compareTo(nodeToStart.data) > 0 && nodeToStart.rightChild != null)
+            return containsRecursive(nodeToStart.rightChild, element);
+        return false;
     }
 
     public void add(T element) {
@@ -37,8 +41,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
         } catch (NullPointerException nullPointerException) {
             nullPointerException.printStackTrace();
         }
-        if (exceptions == 0)
-            addRecursive(root, element);
+        if (exceptions == 0) {
+            root = addRecursive(root, element);
+            length++;
+        }
     }
 
     public String toString() {
