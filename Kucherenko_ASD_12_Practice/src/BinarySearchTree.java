@@ -2,6 +2,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private TreeNode<T> root;
     private int length;
 
+    public BinarySearchTree() {
+        root = null;
+    }
+
     public boolean isEmpty() {
         return length == 0;
     }
