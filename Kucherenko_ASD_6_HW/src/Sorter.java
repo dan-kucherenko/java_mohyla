@@ -97,7 +97,6 @@ public class Sorter {
             System.arraycopy(leftHalfArray, 0, arr, 0, leftHalfArray.length);
             System.arraycopy(rightHalfArray, 0, arr, leftHalfArray.length, rightHalfArray.length);
         } else {
-
             int leftSize = leftHalfArray.length, rightSize = rightHalfArray.length;
             int i = 0, j = 0, k = 0;
             while (i < leftSize && j < rightSize) {
