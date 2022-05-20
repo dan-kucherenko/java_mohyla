@@ -239,20 +239,15 @@ public class Sorter {
         int greaterThan = highIndex;
 
         while (i <= greaterThan) {
-            if (arr.length < 10) {
-                insertionSort(arr);
-                break;
-            } else {
-                if (arr[i] < partitionElement)
-                    swapElements(arr, lesserThan++, i++);
-                else if (arr[i] > partitionElement)
-                    swapElements(arr, greaterThan--, i);
-                else
-                    i++;
-            }
+            if (arr[i] < partitionElement)
+                swapElements(arr, lesserThan++, i++);
+            else if (arr[i] > partitionElement)
+                swapElements(arr, greaterThan--, i);
+            else
+                i++;
         }
-        quickSortWithTwoModifications(arr, lowIndex, lesserThan - 1);
-        quickSortWithTwoModifications(arr, greaterThan + 1, highIndex);
+        quickSortWithDijkstra(arr, lowIndex, lesserThan - 1);
+        quickSortWithDijkstra(arr, greaterThan + 1, highIndex);
     }
 
     public static void quickSortGeneralWithDijkstra(int[] array) {
@@ -269,15 +264,20 @@ public class Sorter {
         int greaterThan = highIndex;
 
         while (i <= greaterThan) {
-            if (arr[i] < partitionElement)
-                swapElements(arr, lesserThan++, i++);
-            else if (arr[i] > partitionElement)
-                swapElements(arr, greaterThan--, i);
-            else
-                i++;
+            if (arr.length < 10) {
+                insertionSort(arr);
+                break;
+            } else {
+                if (arr[i] < partitionElement)
+                    swapElements(arr, lesserThan++, i++);
+                else if (arr[i] > partitionElement)
+                    swapElements(arr, greaterThan--, i);
+                else
+                    i++;
+            }
         }
-        quickSortWithDijkstra(arr, lowIndex, lesserThan - 1);
-        quickSortWithDijkstra(arr, greaterThan + 1, highIndex);
+        quickSortWithTwoModifications(arr, lowIndex, lesserThan - 1);
+        quickSortWithTwoModifications(arr, greaterThan + 1, highIndex);
     }
 
     public static void quickSortGeneralWithTwoModifications(int[] array) {

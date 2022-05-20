@@ -47,7 +47,7 @@ public class MyList<T extends Number & Comparable<T>> {
             while (currentNode != null) {
                 listAsString += currentNode.data;
                 if (currentNode.next != null)
-                    listAsString += " -> ";
+                    listAsString += " <-> ";
                 currentNode = currentNode.next;
             }
         }
