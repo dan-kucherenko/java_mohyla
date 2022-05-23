@@ -1,9 +1,12 @@
 public class Dictionary extends BinaryTree<Character> {
+    public Dictionary() {
+        setRoot('2');
+    }
     public String findCharCode(Character character) {
-        return findCharCodeFrom(character, getRoot());
+        return findCharCodeRecursion(character, getRoot());
     }
 
-    private void addCharWithCode(Character character, String code) { //make root
+    public void addCharWithCode(Character character, String code) {
         char[] chars = code.toCharArray();
         PrefixNode<Character> currentNode = getRoot();
         for (char ch : chars) {
@@ -20,14 +23,14 @@ public class Dictionary extends BinaryTree<Character> {
         currentNode.data = character;
     }
 
-    private String findCharCodeFrom(Character character, PrefixNode<Character> node) {
+    private String findCharCodeRecursion(Character character, PrefixNode<Character> node) {
         if (node.rightChild == null && node.leftChild == null) {
             if (character == node.data)
                 return "";
             return null;
         }
         if (node.leftChild != null) {
-            String res = findCharCodeFrom(character, node.leftChild);
+            String res = findCharCodeRecursion(character, node.leftChild);
             if (res != null) {
                 if (res.equals("")) {
                     return "0";
@@ -36,7 +39,7 @@ public class Dictionary extends BinaryTree<Character> {
             }
         }
         if (node.rightChild != null) {
-            String res = findCharCodeFrom(character, node.rightChild);
+            String res = findCharCodeRecursion(character, node.rightChild);
             if (res != null) {
                 if (res.equals("")) {
                     return "1";
@@ -47,16 +50,5 @@ public class Dictionary extends BinaryTree<Character> {
         return null;
     }
 
-    private void createDictionary() {
-        addCharWithCode('a', "000");
-        addCharWithCode('b', "001");
-        addCharWithCode('c', "010");
-        addCharWithCode('d', "011");
-        addCharWithCode('e', "100");
-    }
 
-    public Dictionary() {
-        setRoot('\0');
-        createDictionary();
-    }
 }
